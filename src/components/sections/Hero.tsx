@@ -7,8 +7,13 @@ export async function Hero() {
   const t = await getTranslations("Home.hero");
 
   return (
-    <section className="overflow-hidden bg-primary">
-      <Container className="grid items-center gap-10 py-16 lg:grid-cols-2 lg:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary-deep">
+      {/* Warmer Glow-Akzent im Hintergrund, um die Fläche aufzubrechen */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-warm/20 blur-3xl"
+      />
+      <Container className="relative grid items-center gap-10 py-16 lg:grid-cols-2 lg:py-24">
         <div>
           <p className="mb-4 font-heading text-sm font-semibold uppercase tracking-wide text-accent">
             {t("eyebrow")}

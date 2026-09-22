@@ -42,7 +42,7 @@ export default async function KontaktPage({
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-6">
-            <div className="rounded-lg border border-primary/10 bg-white p-6">
+            <div className="rounded-lg border border-primary/10 bg-white p-6 shadow-card">
               <h2 className="font-heading text-lg font-bold text-primary">
                 {t("directHeading")}
               </h2>
@@ -81,7 +81,7 @@ export default async function KontaktPage({
             </div>
           </div>
 
-          <div className="rounded-lg border border-primary/10 bg-white p-6 sm:p-8">
+          <div className="rounded-lg border border-primary/10 bg-white p-6 shadow-card sm:p-8">
             <ContactForm />
           </div>
         </div>

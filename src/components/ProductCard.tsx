@@ -7,7 +7,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg border border-primary/10 bg-white">
+    <div className="flex flex-col overflow-hidden rounded-lg border border-primary/10 bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover">
       <div className="relative aspect-[4/3] w-full bg-background">
         <Image
           src={product.image}
@@ -19,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <p className="font-heading text-xs font-semibold uppercase tracking-wide text-accent">
+        <p className="font-heading text-xs font-semibold uppercase tracking-wide text-warm">
           {product.brand} &middot; {product.origin}
         </p>
         <h3 className="mt-2 font-heading text-xl font-bold text-primary">

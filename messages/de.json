@@ -89,6 +89,26 @@
       "cta": "Zum Kontaktformular"
     }
   },
+  "SupplyChain": {
+    "eyebrow": "Unsere Lieferkette",
+    "title": "Vom Produzenten bis ins Regal",
+    "description": "Drei Stationen, ein durchgehend persönlich betreuter Weg – von der internationalen Produktion bis zu Ihrem Verkaufsregal.",
+    "stops": [
+      {
+        "label": "Produzent",
+        "description": "Ausgewählte internationale Hersteller, direkt vor Ort geprüft."
+      },
+      {
+        "label": "dristro Hub",
+        "description": "Import, Qualitätskontrolle und Kommissionierung in Nordrhein-Westfalen."
+      },
+      {
+        "label": "Handel & Gastronomie",
+        "description": "Zuverlässige Lieferung direkt zu Ihnen – bereit für Ihre Kundschaft."
+      }
+    ],
+    "canvasFallback": "Animierte Darstellung der Lieferkette (3D-Grafik wird geladen)"
+  },
   "About": {
     "meta": {
       "title": "Über uns",

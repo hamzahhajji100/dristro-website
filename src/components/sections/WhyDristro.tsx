@@ -21,12 +21,15 @@ export async function WhyDristro() {
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
-          {reasons.map((reason) => (
+          {reasons.map((reason, index) => (
             <div
               key={reason.title}
-              className="rounded-lg border border-primary/10 bg-background p-6"
+              className="rounded-lg border border-primary/10 bg-background p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover"
             >
-              <h3 className="font-heading text-lg font-bold text-primary">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-warm/10 font-heading text-sm font-bold text-warm">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 font-heading text-lg font-bold text-primary">
                 {reason.title}
               </h3>
               <p className="mt-3 text-sm text-foreground/75">

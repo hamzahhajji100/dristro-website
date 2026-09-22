@@ -55,7 +55,7 @@ export default async function PartnerWerdenPage({
           {audiences.map((audience) => (
             <div
               key={audience.title}
-              className="rounded-lg border border-primary/10 bg-white p-6"
+              className="rounded-lg border border-primary/10 bg-white p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover"
             >
               <h3 className="font-heading text-lg font-bold text-primary">
                 {audience.title}
@@ -74,7 +74,7 @@ export default async function PartnerWerdenPage({
           <ol className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, index) => (
               <li key={step.title} className="relative pl-12">
-                <span className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full bg-primary font-heading text-sm font-bold text-background">
+                <span className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full bg-warm font-heading text-sm font-bold text-background">
                   {index + 1}
                 </span>
                 <h3 className="font-heading text-base font-bold text-primary">
@@ -88,7 +88,7 @@ export default async function PartnerWerdenPage({
           </ol>
         </div>
 
-        <div className="mt-20 grid gap-10 rounded-lg border border-primary/10 bg-white p-8 lg:grid-cols-[1fr_1.2fr] lg:p-12">
+        <div className="mt-20 grid gap-10 rounded-lg border border-primary/10 bg-white p-8 shadow-card lg:grid-cols-[1fr_1.2fr] lg:p-12">
           <div>
             <h2 className="font-heading text-2xl font-bold text-primary">
               {t("formHeading")}

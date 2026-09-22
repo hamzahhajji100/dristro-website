@@ -48,7 +48,7 @@ export default async function SortimentPage({
           ))}
         </div>
 
-        <div className="mt-16 rounded-lg border border-dashed border-primary/30 bg-white p-10 text-center">
+        <div className="mt-16 rounded-lg border border-dashed border-warm/40 bg-warm/5 p-10 text-center">
           <h2 className="font-heading text-xl font-bold text-primary">
             {t("comingSoonTitle")}
           </h2>

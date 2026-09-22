@@ -89,6 +89,26 @@
       "cta": "Ir al formulario de contacto"
     }
   },
+  "SupplyChain": {
+    "eyebrow": "Nuestra cadena de suministro",
+    "title": "Del productor a la estantería",
+    "description": "Tres etapas, un trayecto con atención personal de principio a fin: desde la producción internacional hasta su estantería de venta.",
+    "stops": [
+      {
+        "label": "Productor",
+        "description": "Fabricantes internacionales seleccionados, verificados in situ."
+      },
+      {
+        "label": "Hub de dristro",
+        "description": "Importación, control de calidad y preparación de pedidos en Renania del Norte-Westfalia."
+      },
+      {
+        "label": "Comercio y hostelería",
+        "description": "Entrega fiable directamente a usted, lista para sus clientes."
+      }
+    ],
+    "canvasFallback": "Ilustración animada de la cadena de suministro (cargando gráfico 3D)"
+  },
   "About": {
     "meta": {
       "title": "Sobre nosotros",

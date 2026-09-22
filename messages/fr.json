@@ -89,6 +89,26 @@
       "cta": "Accéder au formulaire de contact"
     }
   },
+  "SupplyChain": {
+    "eyebrow": "Notre chaîne logistique",
+    "title": "Du producteur jusqu'au rayon",
+    "description": "Trois étapes, un parcours suivi personnellement de bout en bout – de la production internationale jusqu'à votre rayon de vente.",
+    "stops": [
+      {
+        "label": "Producteur",
+        "description": "Fabricants internationaux sélectionnés, vérifiés sur place."
+      },
+      {
+        "label": "Hub dristro",
+        "description": "Importation, contrôle qualité et préparation des commandes en Rhénanie-du-Nord-Westphalie."
+      },
+      {
+        "label": "Commerce et restauration",
+        "description": "Livraison fiable directement chez vous, prête pour votre clientèle."
+      }
+    ],
+    "canvasFallback": "Illustration animée de la chaîne logistique (chargement du graphique 3D)"
+  },
   "About": {
     "meta": {
       "title": "À propos",

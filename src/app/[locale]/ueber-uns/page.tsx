@@ -49,9 +49,9 @@ export default async function UeberUnsPage({
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start">
-          <div className="rounded-lg border border-primary/10 bg-white p-6">
+          <div className="rounded-lg border border-primary/10 bg-white p-6 shadow-card">
             {/* TODO: durch echtes Foto ersetzen */}
-            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-primary/10 text-3xl font-bold text-primary">
+            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-warm/10 text-3xl font-bold text-warm">
               HH
             </div>
             <p className="mt-4 text-center font-heading text-lg font-bold text-primary">
@@ -81,7 +81,7 @@ export default async function UeberUnsPage({
             {values.map((value) => (
               <div
                 key={value.title}
-                className="rounded-lg border border-primary/10 bg-white p-6"
+                className="rounded-lg border border-primary/10 bg-white p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover"
               >
                 <h3 className="font-heading text-base font-bold text-primary">
                   {value.title}

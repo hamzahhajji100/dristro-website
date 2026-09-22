@@ -89,6 +89,26 @@
       "cta": "Go to contact form"
     }
   },
+  "SupplyChain": {
+    "eyebrow": "Our supply chain",
+    "title": "From producer to shelf",
+    "description": "Three stops, one personally managed journey – from international production to your sales shelf.",
+    "stops": [
+      {
+        "label": "Producer",
+        "description": "Selected international manufacturers, verified on site."
+      },
+      {
+        "label": "dristro Hub",
+        "description": "Import, quality control and order picking in North Rhine-Westphalia."
+      },
+      {
+        "label": "Retail & Hospitality",
+        "description": "Reliable delivery straight to you – ready for your customers."
+      }
+    ],
+    "canvasFallback": "Animated illustration of the supply chain (loading 3D graphic)"
+  },
   "About": {
     "meta": {
       "title": "About us",

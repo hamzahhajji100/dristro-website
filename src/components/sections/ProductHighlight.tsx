@@ -26,7 +26,7 @@ export async function ProductHighlight() {
           {preview.map((product) => (
             <div
               key={product.slug}
-              className="flex flex-col items-center rounded-lg border border-primary/10 bg-white p-4 text-center"
+              className="flex flex-col items-center rounded-lg border border-primary/10 bg-white p-4 text-center shadow-card transition-shadow duration-300 hover:shadow-card-hover"
             >
               <div className="relative aspect-square w-full max-w-[120px]">
                 <Image

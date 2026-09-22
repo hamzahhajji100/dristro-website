@@ -5,9 +5,9 @@ type Variant = "primary" | "secondary" | "outline" | "outlineInverse";
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-primary text-background hover:bg-primary-dark",
+    "bg-primary text-background shadow-[0_4px_14px_-4px_rgba(15,110,86,0.45)] hover:bg-primary-dark hover:shadow-[0_6px_18px_-4px_rgba(15,110,86,0.55)]",
   secondary:
-    "bg-accent text-primary-dark hover:bg-accent/90",
+    "bg-accent text-primary-dark shadow-[0_4px_14px_-4px_rgba(93,202,165,0.5)] hover:bg-accent/90",
   outline:
     "border border-primary text-primary hover:bg-primary hover:text-background",
   // Für Einsatz auf dunklem (primärfarbenem) Hintergrund, z.B. im Hero.
@@ -16,7 +16,7 @@ const variantClasses: Record<Variant, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded px-6 py-3 font-heading font-semibold transition-colors";
+  "inline-flex items-center justify-center rounded px-6 py-3 font-heading font-semibold transition-all";
 
 interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
