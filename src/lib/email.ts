@@ -12,8 +12,8 @@ const reasonLabels: Record<ContactFormData["reason"], string> = {
 // Kann bei Bedarf durch einen anderen Anbieter (z.B. Postmark, SendGrid) ersetzt werden.
 export async function sendContactMail(data: ContactFormData) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "kontakt@dristro.com";
-  const to = process.env.CONTACT_TO_EMAIL ?? "info@dristro.com";
+  const from = process.env.CONTACT_FROM_EMAIL || "kontakt@dristro.com";
+  const to = process.env.CONTACT_TO_EMAIL || "info@dristro.com";
 
   if (!apiKey) {
     // Ohne konfigurierten API-Key wird der Versand übersprungen, damit die

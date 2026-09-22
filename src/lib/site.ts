@@ -2,7 +2,9 @@
 // Metadaten etc.) liegen in den messages/*.json-Dateien.
 export const siteConfig = {
   name: "dristro",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dristro.com",
+  // "||" statt "??": fängt auch einen leer gesetzten (aber vorhandenen)
+  // Umgebungsvariablen-Wert ab, nicht nur einen fehlenden.
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://dristro.com",
   contact: {
     email: "info@dristro.com",
     phone: "+49 1622 733296",
