@@ -1,180 +1,306 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
 import * as THREE from "three";
 
-const GLOBE_RADIUS = 1.6;
-
-// Grobe, illustrative Koordinaten zur Veranschaulichung der Lieferkette –
-// keine exakte Kartografie oder Aussage über tatsächliche Herkunftsländer.
-const PRODUCER = { lat: 13, lon: 101 };
-const HUB = { lat: 51.2, lon: 6.7 }; // Neuss / NRW
-const RETAIL = { lat: 50.1, lon: 8.7 };
-
-function latLonToVector3(lat: number, lon: number, radius: number) {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  return new THREE.Vector3(
-    -radius * Math.sin(phi) * Math.cos(theta),
-    radius * Math.cos(phi),
-    radius * Math.sin(phi) * Math.sin(theta)
-  );
-}
-
-function buildArc(start: THREE.Vector3, end: THREE.Vector3, lift: number) {
-  const mid = start.clone().lerp(end, 0.5);
-  mid.normalize().multiplyScalar(GLOBE_RADIUS + lift);
-  return new THREE.QuadraticBezierCurve3(start, mid, end);
-}
-
-interface StopMarkerProps {
-  position: THREE.Vector3;
-  color: string;
-  pulseOffset: number;
-}
-
 // Textlabels (3D-Text bzw. Html-Overlay) verursachten in Testumgebungen mit
 // eingeschränktem WebGL (z.B. Software-Rendering) einen Kontextverlust bzw.
-// React-19-Renderfehler. Die Stationen sind daher als pulsierende Marker
-// dargestellt; die zugehörigen Beschriftungen stehen als barrierefreier
-// Text direkt unter der Animation (siehe SupplyChain.tsx).
-function StopMarker({ position, color, pulseOffset }: StopMarkerProps) {
-  const ringRef = useRef<THREE.Mesh>(null);
+// React-19-Renderfehler. Die Szene verzichtet daher bewusst auf beides und
+// nutzt ausschließlich einfache Mesh-Primitives, deren Position/Sichtbarkeit
+// jeweils direkt im eigenen useFrame aus der Three.js-Clock berechnet wird
+// (kein React-State pro Frame – das würde 60 Re-Renders/Sekunde bedeuten).
+// Die Beschriftungen der Stationen stehen als barrierefreier Text unter der
+// Animation (siehe SupplyChain.tsx).
 
-  useFrame(({ clock }) => {
-    if (!ringRef.current) return;
-    const t = (clock.elapsedTime * 0.6 + pulseOffset) % 1;
-    const scale = 1 + t * 1.8;
-    ringRef.current.scale.setScalar(scale);
-    const material = ringRef.current.material as THREE.MeshBasicMaterial;
-    material.opacity = Math.max(0, 0.5 - t * 0.5);
-  });
+const CYCLE = 18; // Sekunden für einen vollständigen Durchlauf
 
-  return (
-    <group position={position.clone().multiplyScalar(1.03)}>
-      <mesh>
-        <sphereGeometry args={[0.09, 16, 16]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.7} />
-      </mesh>
-      <mesh ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.09, 0.115, 24]} />
-        <meshBasicMaterial color={color} transparent opacity={0.5} side={THREE.DoubleSide} />
-      </mesh>
-    </group>
-  );
+const PLANE_START = new THREE.Vector3(-4.4, 2.6, -2.6);
+const PLANE_ARRIVE = new THREE.Vector3(0, 1.05, -1.15);
+const WAREHOUSE_POS = new THREE.Vector3(0, 0, -0.3);
+const SHELF_POS = new THREE.Vector3(0.25, 0.42, 0.35);
+const WORKER_POS = new THREE.Vector3(0.55, 0, 0.45);
+const SHOP_POS = new THREE.Vector3(2.6, 0, 0.5);
+
+// Phasenfenster (in Sekunden) innerhalb eines Zyklus
+const PHASE = {
+  flight: [0, 7] as const,
+  unload: [7, 9.5] as const,
+  delivery: [9.5, 14.5] as const,
+  reset: [14.5, 18] as const,
+};
+
+function easeInOutCubic(x: number) {
+  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 }
 
-interface VehicleProps {
-  curve: THREE.QuadraticBezierCurve3;
-  speed: number;
-  offset: number;
-  color: string;
-  shape: "plane" | "truck";
+function clamp01(x: number) {
+  return Math.min(1, Math.max(0, x));
 }
 
-function Vehicle({ curve, speed, offset, color, shape }: VehicleProps) {
+function phaseProgress(t: number, [start, end]: readonly [number, number]) {
+  return easeInOutCubic(clamp01((t - start) / (end - start)));
+}
+
+function cycleTime(elapsed: number) {
+  return elapsed % CYCLE;
+}
+
+function Plane() {
   const ref = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
-    const t = (((clock.elapsedTime * speed + offset) % 1) + 1) % 1;
-    const point = curve.getPoint(t);
-    const tangent = curve.getTangent(t);
-    ref.current.position.copy(point);
-    ref.current.up.copy(point.clone().normalize());
-    ref.current.lookAt(point.clone().add(tangent));
+    const t = cycleTime(clock.elapsedTime);
+    const progress = phaseProgress(t, PHASE.flight);
+    const visible = t < PHASE.unload[0] + 0.3;
+
+    const pos = PLANE_START.clone().lerp(PLANE_ARRIVE, progress);
+    pos.y += Math.sin(progress * Math.PI) * 0.9; // Sinkflugbogen
+    ref.current.position.copy(pos);
+
+    const scale = visible ? 1 - progress * 0.55 : 0;
+    ref.current.scale.setScalar(scale);
+
+    const dir = PLANE_ARRIVE.clone().sub(PLANE_START).normalize();
+    ref.current.rotation.set(-0.15, Math.atan2(dir.x, dir.z), 0);
   });
 
   return (
     <group ref={ref}>
-      {shape === "plane" ? (
-        <group rotation={[0, Math.PI / 2, 0]} scale={0.1}>
-          <mesh>
-            <capsuleGeometry args={[0.3, 1.3, 4, 8]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-          <mesh rotation={[0, 0, Math.PI / 2]}>
-            <boxGeometry args={[0.08, 1.6, 0.45]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-          <mesh position={[-0.65, 0.18, 0]}>
-            <boxGeometry args={[0.08, 0.45, 0.28]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-        </group>
-      ) : (
-        <group scale={0.09}>
-          <mesh>
-            <boxGeometry args={[1.2, 0.6, 0.6]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-          <mesh position={[0.55, 0.12, 0]}>
-            <boxGeometry args={[0.35, 0.4, 0.55]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-        </group>
-      )}
+      <group scale={0.32}>
+        <mesh>
+          <capsuleGeometry args={[0.3, 1.3, 4, 8]} />
+          <meshStandardMaterial color="#FAFAF8" />
+        </mesh>
+        <mesh rotation={[0, 0, Math.PI / 2]}>
+          <boxGeometry args={[0.08, 1.7, 0.5]} />
+          <meshStandardMaterial color="#FAFAF8" />
+        </mesh>
+        <mesh position={[-0.68, 0.2, 0]}>
+          <boxGeometry args={[0.08, 0.5, 0.3]} />
+          <meshStandardMaterial color="#FAFAF8" />
+        </mesh>
+        <mesh position={[0.72, 0, 0]}>
+          <boxGeometry args={[0.1, 0.16, 0.16]} />
+          <meshStandardMaterial color="#C1653F" />
+        </mesh>
+      </group>
     </group>
   );
 }
 
-function Globe() {
-  const groupRef = useRef<THREE.Group>(null);
+function Warehouse() {
+  return (
+    <group position={WAREHOUSE_POS}>
+      <mesh position={[0, 0.45, 0]}>
+        <boxGeometry args={[1.5, 0.9, 1.1]} />
+        <meshStandardMaterial color="#0B5643" roughness={0.8} />
+      </mesh>
+      <mesh position={[0, 0.94, 0]}>
+        <boxGeometry args={[1.6, 0.08, 1.2]} />
+        <meshStandardMaterial color="#5DCAA5" roughness={0.6} />
+      </mesh>
+      {/* Tor/Öffnung */}
+      <mesh position={[0, 0.28, 0.56]}>
+        <boxGeometry args={[0.5, 0.5, 0.02]} />
+        <meshStandardMaterial color="#073B2E" />
+      </mesh>
+      {/* Regal mit Kisten */}
+      <mesh position={[0.3, 0.42, 0.4]}>
+        <boxGeometry args={[0.55, 0.03, 0.28]} />
+        <meshStandardMaterial color="#FAFAF8" />
+      </mesh>
+      <mesh position={[0.15, 0.34, 0.42]}>
+        <boxGeometry args={[0.16, 0.16, 0.16]} />
+        <meshStandardMaterial color="#E8A377" />
+      </mesh>
+      <mesh position={[0.36, 0.34, 0.42]}>
+        <boxGeometry args={[0.16, 0.16, 0.16]} />
+        <meshStandardMaterial color="#5DCAA5" />
+      </mesh>
+    </group>
+  );
+}
 
-  useFrame((_, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05;
-    }
+function Worker() {
+  const ref = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = cycleTime(clock.elapsedTime);
+    const active = t >= PHASE.unload[0] && t <= PHASE.unload[1] ? 1 : 0;
+    const bob = active ? Math.sin(clock.elapsedTime * 6) * 0.03 : 0;
+    ref.current.position.set(WORKER_POS.x, WORKER_POS.y + bob, WORKER_POS.z);
+    ref.current.rotation.y = -0.4 + active * 0.5;
   });
 
-  const producerPos = useMemo(() => latLonToVector3(PRODUCER.lat, PRODUCER.lon, GLOBE_RADIUS), []);
-  const hubPos = useMemo(() => latLonToVector3(HUB.lat, HUB.lon, GLOBE_RADIUS), []);
-  const retailPos = useMemo(() => latLonToVector3(RETAIL.lat, RETAIL.lon, GLOBE_RADIUS), []);
+  return (
+    <group ref={ref} position={WORKER_POS}>
+      <mesh position={[0, 0.16, 0]}>
+        <capsuleGeometry args={[0.07, 0.2, 4, 8]} />
+        <meshStandardMaterial color="#0F6E56" />
+      </mesh>
+      <mesh position={[0, 0.34, 0]}>
+        <sphereGeometry args={[0.06, 16, 16]} />
+        <meshStandardMaterial color="#E8A377" />
+      </mesh>
+    </group>
+  );
+}
 
-  const mainArc = useMemo(() => buildArc(producerPos, hubPos, 1.1), [producerPos, hubPos]);
-  const lastMileArc = useMemo(() => buildArc(hubPos, retailPos, 0.25), [hubPos, retailPos]);
+function DeliveryCrate() {
+  const ref = useRef<THREE.Mesh>(null);
 
-  const mainArcPoints = useMemo(() => mainArc.getPoints(64), [mainArc]);
-  const lastMileArcPoints = useMemo(() => lastMileArc.getPoints(32), [lastMileArc]);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = cycleTime(clock.elapsedTime);
+    const progress = phaseProgress(t, PHASE.unload);
+    const start = PLANE_ARRIVE.clone().setY(0.12);
+    const pos = start.lerp(SHELF_POS.clone().setY(0.5), progress);
+    ref.current.position.copy(pos);
+    ref.current.visible = progress > 0.01 && progress < 0.99;
+    ref.current.rotation.y = progress * Math.PI;
+  });
 
   return (
-    <group ref={groupRef}>
-      <mesh>
-        <icosahedronGeometry args={[GLOBE_RADIUS, 3]} />
-        <meshStandardMaterial color="#0F6E56" roughness={0.75} metalness={0.05} />
+    <mesh ref={ref}>
+      <boxGeometry args={[0.16, 0.16, 0.16]} />
+      <meshStandardMaterial color="#C1653F" />
+    </mesh>
+  );
+}
+
+function Shop() {
+  return (
+    <group position={SHOP_POS}>
+      <mesh position={[0, 0.32, 0]}>
+        <boxGeometry args={[0.9, 0.64, 0.8]} />
+        <meshStandardMaterial color="#FAFAF8" roughness={0.9} />
       </mesh>
-      <mesh>
-        <icosahedronGeometry args={[GLOBE_RADIUS + 0.004, 3]} />
-        <meshBasicMaterial color="#5DCAA5" wireframe transparent opacity={0.35} />
+      <mesh position={[0, 0.68, 0]}>
+        <boxGeometry args={[1, 0.1, 0.9]} />
+        <meshStandardMaterial color="#C1653F" />
       </mesh>
-
-      <Line points={mainArcPoints} color="#E8A377" lineWidth={2.5} dashed dashSize={0.08} gapSize={0.05} />
-      <Vehicle curve={mainArc} speed={0.09} offset={0} color="#FAFAF8" shape="plane" />
-
-      <Line points={lastMileArcPoints} color="#C1653F" lineWidth={2.5} dashed dashSize={0.06} gapSize={0.04} />
-      <Vehicle curve={lastMileArc} speed={0.18} offset={0.5} color="#C1653F" shape="truck" />
-
-      <StopMarker position={producerPos} color="#E8A377" pulseOffset={0} />
-      <StopMarker position={hubPos} color="#5DCAA5" pulseOffset={0.33} />
-      <StopMarker position={retailPos} color="#C1653F" pulseOffset={0.66} />
+      <mesh position={[0, 0.2, 0.41]}>
+        <boxGeometry args={[0.4, 0.36, 0.02]} />
+        <meshStandardMaterial color="#0F6E56" />
+      </mesh>
     </group>
+  );
+}
+
+function Truck() {
+  const ref = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = cycleTime(clock.elapsedTime);
+    const progress = phaseProgress(t, PHASE.delivery);
+    const visible = t >= PHASE.unload[1] - 0.5 && t < PHASE.reset[0] + 0.3;
+
+    const pos = WAREHOUSE_POS.clone()
+      .setY(0.14)
+      .lerp(SHOP_POS.clone().setY(0.14), progress);
+    ref.current.position.copy(pos);
+    ref.current.scale.setScalar(visible ? 0.24 : 0);
+    ref.current.rotation.y = -Math.PI / 2.4;
+  });
+
+  return (
+    <group ref={ref}>
+      <mesh>
+        <boxGeometry args={[1.2, 0.6, 0.6]} />
+        <meshStandardMaterial color="#0F6E56" />
+      </mesh>
+      <mesh position={[0.58, 0.1, 0]}>
+        <boxGeometry args={[0.3, 0.4, 0.55]} />
+        <meshStandardMaterial color="#5DCAA5" />
+      </mesh>
+    </group>
+  );
+}
+
+function Ground() {
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
+      <circleGeometry args={[4.4, 48]} />
+      <meshStandardMaterial color="#0B5643" roughness={0.95} />
+    </mesh>
+  );
+}
+
+function CameraRig() {
+  const { camera } = useThree();
+  const target = useMemo(() => new THREE.Vector3(), []);
+
+  const keyframes = useMemo(
+    () => [
+      { time: 0, pos: new THREE.Vector3(-2.6, 3.1, 4.4), look: new THREE.Vector3(-1.2, 1, -0.4) },
+      { time: PHASE.flight[1], pos: new THREE.Vector3(-0.5, 1.7, 2.5), look: WAREHOUSE_POS.clone().setY(0.5) },
+      { time: PHASE.unload[1], pos: new THREE.Vector3(0.3, 1.05, 1.6), look: SHELF_POS.clone().setY(0.45) },
+      { time: PHASE.delivery[1], pos: new THREE.Vector3(1.7, 1.6, 3.1), look: WAREHOUSE_POS.clone().lerp(SHOP_POS, 0.6).setY(0.4) },
+      { time: CYCLE, pos: new THREE.Vector3(-2.6, 3.1, 4.4), look: new THREE.Vector3(-1.2, 1, -0.4) },
+    ],
+    []
+  );
+
+  useFrame(({ clock }) => {
+    const t = cycleTime(clock.elapsedTime);
+    let i = 0;
+    while (i < keyframes.length - 2 && t > keyframes[i + 1].time) i++;
+    const a = keyframes[i];
+    const b = keyframes[i + 1];
+    const span = b.time - a.time || 1;
+    const localT = easeInOutCubic(clamp01((t - a.time) / span));
+
+    camera.position.lerpVectors(a.pos, b.pos, localT);
+    target.lerpVectors(a.look, b.look, localT);
+    camera.lookAt(target);
+  });
+
+  return null;
+}
+
+function Scene() {
+  const routePoints = useMemo(
+    () => [PLANE_START, PLANE_ARRIVE.clone().lerp(PLANE_START, 0.35), PLANE_ARRIVE],
+    []
+  );
+  const roadPoints = useMemo(
+    () => [WAREHOUSE_POS.clone().setY(0.02), SHOP_POS.clone().setY(0.02)],
+    []
+  );
+
+  return (
+    <>
+      <CameraRig />
+      <Ground />
+      <Line points={routePoints} color="#E8A377" lineWidth={1.5} dashed dashSize={0.08} gapSize={0.05} />
+      <Line points={roadPoints} color="#5DCAA5" lineWidth={1.5} dashed dashSize={0.06} gapSize={0.04} />
+      <Warehouse />
+      <Shop />
+      <Worker />
+      <Plane />
+      <DeliveryCrate />
+      <Truck />
+    </>
   );
 }
 
 export default function SupplyChainCanvas() {
   return (
     <Canvas
-      camera={{ position: [0, 1.4, 4.4], fov: 42 }}
+      camera={{ position: [-2.6, 3.1, 4.4], fov: 42 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
       style={{ touchAction: "pan-y" }}
     >
-      <ambientLight intensity={0.75} />
+      <ambientLight intensity={0.8} />
       <directionalLight position={[4, 5, 3]} intensity={1.1} />
-      <directionalLight position={[-4, -2, -3]} intensity={0.3} color="#C1653F" />
-      <Globe />
+      <directionalLight position={[-4, -1, -3]} intensity={0.3} color="#C1653F" />
+      <Scene />
     </Canvas>
   );
 }
