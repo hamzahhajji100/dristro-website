@@ -1,0 +1,271 @@
+{
+  "Meta": {
+    "title": "dristro – Importación internacional de bebidas y distribución B2B",
+    "description": "dristro importa y distribuye bebidas y snacks internacionales de alta calidad para comercios minoristas, hostelería y mayoristas en Alemania. Con atención personal y entregas fiables."
+  },
+  "Nav": {
+    "home": "Inicio",
+    "about": "Sobre nosotros",
+    "products": "Productos",
+    "partner": "Hazte socio",
+    "contact": "Contacto"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma"
+  },
+  "Header": {
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "becomePartner": "Hazte socio"
+  },
+  "Footer": {
+    "tagline": "Importación internacional de bebidas y distribución B2B para el mercado alemán.",
+    "navigationHeading": "Navegación",
+    "contactHeading": "Contacto",
+    "locationLabel": "Ubicación",
+    "legalHeading": "Aviso legal",
+    "copyright": "© {year} dristro. Todos los derechos reservados.",
+    "brandLine": "Dristro Importación y Distribución de Bebidas"
+  },
+  "CookieConsent": {
+    "text": "Utilizamos cookies para operar este sitio web de forma fiable. Las cookies necesarias son imprescindibles para el funcionamiento; las cookies opcionales nos ayudan, por ejemplo, a analizar el uso. Más información en nuestra <link>política de privacidad</link>.",
+    "necessaryLabel": "Cookies necesarias (siempre activas)",
+    "optionalLabel": "Cookies opcionales (p. ej. análisis)",
+    "acceptAll": "Aceptar todas",
+    "onlyNecessary": "Solo necesarias",
+    "settings": "Ajustes",
+    "saveSelection": "Guardar selección"
+  },
+  "NotFound": {
+    "eyebrow": "Error 404",
+    "title": "No se ha encontrado esta página",
+    "description": "La página solicitada no existe o ha sido movida. Utilice la navegación o vuelva a la página de inicio.",
+    "cta": "Ir a la página de inicio"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Importación B2B de bebidas",
+      "title": "Bebidas internacionales, de forma fiable en las estanterías alemanas",
+      "subtitle": "dristro conecta marcas internacionales seleccionadas de bebidas y snacks – desde energy drinks hasta té helado y agua de coco – con comercios minoristas, hostelería y mayoristas en Alemania, con atención personal y entregas fiables.",
+      "ctaPartner": "Hazte socio",
+      "ctaProducts": "Nuestros productos",
+      "imageAlt": "Selección internacional de bebidas y snacks de dristro"
+    },
+    "trustBar": {
+      "items": [
+        "Importación directa internacional",
+        "100% productos naturales",
+        "Persona de contacto personal",
+        "Cantidades de entrega flexibles"
+      ]
+    },
+    "portfolio": {
+      "eyebrow": "Nuestro portafolio",
+      "title": "Varias categorías de productos, un socio de confianza",
+      "description": "dristro importa y distribuye productos de diversas categorías internacionales de bebidas y snacks – ampliamos nuestro surtido de forma continua.",
+      "cta": "Ver todo el surtido"
+    },
+    "why": {
+      "eyebrow": "Por qué dristro",
+      "title": "Un socio de confianza para el abastecimiento de sus bebidas",
+      "reasons": [
+        {
+          "title": "Contacto directo con el fabricante",
+          "description": "Trabajamos directamente con los productores sin intermediarios innecesarios: caminos cortos, condiciones justas, calidad fiable."
+        },
+        {
+          "title": "Cantidades de entrega flexibles",
+          "description": "Ya sea un pequeño pedido para hostelería o un volumen mayorista: adaptamos las cantidades y la frecuencia de entrega a las necesidades reales de nuestros socios."
+        },
+        {
+          "title": "Atención personal",
+          "description": "Un interlocutor fijo le acompaña desde la primera consulta hasta la colaboración continua: fácil de contactar, sin complicaciones."
+        }
+      ]
+    },
+    "contactTeaser": {
+      "title": "¿Listo para incorporar nuestro surtido a su oferta?",
+      "description": "Escríbanos: nos pondremos en contacto personalmente y hablaremos juntos sobre condiciones, cantidades y plazos de entrega.",
+      "cta": "Ir al formulario de contacto"
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "Sobre nosotros",
+      "description": "dristro importa y distribuye bebidas internacionales de alta calidad para el mercado B2B alemán. Conozca nuestra misión y nuestro equipo."
+    },
+    "eyebrow": "Sobre nosotros",
+    "title": "Importación internacional de bebidas con un toque personal",
+    "intro": [
+      "dristro se fundó con el objetivo de hacer accesibles al comercio alemán bebidas y snacks internacionales seleccionados y de alta calidad. En lugar de apostar por grandes estructuras de distribución impersonales, trabajamos estrechamente con fabricantes y socios comerciales, con procesos de decisión cortos y un claro enfoque en la calidad.",
+      "Nuestro portafolio abarca varias categorías de productos –desde energy drinks hasta té helado y agua de coco– en lugar de limitarnos a un solo producto. Así podemos ofrecer al comercio minorista, la hostelería y los mayoristas un surtido variado y demandado desde una sola fuente. Próximamente se añadirán más marcas y categorías a medida que cumplan nuestros estándares de calidad."
+    ],
+    "founderHeading": "Fundador",
+    "founderName": "Hamzah Hajji",
+    "founderRole": "Fundador",
+    "founderText": "Hamzah Hajji fundó dristro para crear un puente fiable entre los fabricantes internacionales de bebidas y el comercio alemán. El contacto directo y personal con cada socio es fundamental: desde la primera conversación hasta la colaboración continua.",
+    "valuesHeading": "Nuestros valores",
+    "values": [
+      {
+        "title": "Calidad sin concesiones",
+        "description": "Trabajamos exclusivamente con fabricantes cuyos productos cumplen los más altos estándares de calidad."
+      },
+      {
+        "title": "Fiabilidad",
+        "description": "Nuestros socios pueden confiar en entregas puntuales y una comunicación transparente."
+      },
+      {
+        "title": "Relaciones personales",
+        "description": "Apostamos por asociaciones personales a largo plazo en lugar de relaciones comerciales anónimas."
+      },
+      {
+        "title": "Crecimiento sostenible",
+        "description": "Ampliamos nuestro surtido de forma deliberada y gradual, en lugar de buscar volumen a corto plazo."
+      }
+    ]
+  },
+  "Products": {
+    "meta": {
+      "title": "Productos",
+      "description": "El surtido de dristro: categorías internacionales de bebidas y snacks para comercio minorista, hostelería y mayoristas."
+    },
+    "eyebrow": "Productos",
+    "title": "Nuestro surtido",
+    "description": "Importamos y distribuimos categorías internacionales seleccionadas de bebidas y snacks a comercios minoristas, hostelería y mayoristas en Alemania.",
+    "items": {
+      "kokoswasser": {
+        "brand": "Agua de coco",
+        "name": "Agua de coco natural",
+        "origin": "España",
+        "description": "Agua de coco natural sin azúcares añadidos. Refrescante, isotónica e ideal tanto para la venta minorista como para el servicio en hostelería.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "energy-drinks": {
+        "brand": "Energy Drinks",
+        "name": "Energy Drinks internacionales",
+        "origin": "Internacional",
+        "description": "Importaciones seleccionadas de energy drinks para comercio minorista, gasolineras y hostelería – productos demandados con alta rotación.",
+        "formats": ["330 ml", "500 ml"]
+      },
+      "eistee": {
+        "brand": "Té helado",
+        "name": "Especialidades de té helado",
+        "origin": "Balcanes y Europa",
+        "description": "Variedades populares de té helado de los Balcanes y otros mercados europeos – un complemento refrescante para cualquier lineal de bebidas.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "erfrischungsgetraenke": {
+        "brand": "Refrescos",
+        "name": "Refrescos con gas",
+        "origin": "Internacional",
+        "description": "Importaciones internacionales de refrescos para una oferta de bebidas variada y bien surtida.",
+        "formats": ["330 ml", "1 L"]
+      },
+      "snacks": {
+        "brand": "Snacks",
+        "name": "Selección internacional de snacks",
+        "origin": "Internacional",
+        "description": "Productos de snack seleccionados que combinan perfectamente con nuestro surtido de bebidas – prácticos para la zona de caja y ventas adicionales.",
+        "formats": ["Formatos diversos"]
+      }
+    },
+    "comingSoonTitle": "Próximamente más marcas",
+    "comingSoonText": "Ampliamos nuestro surtido de forma continua. ¿Distribuye una bebida internacional que deba llegar a Alemania, o busca otro producto para su surtido? Contáctenos.",
+    "comingSoonCta": "Contactar"
+  },
+  "Partner": {
+    "meta": {
+      "title": "Hazte socio",
+      "description": "Conviértase en socio de distribución de dristro: para comercios minoristas, hostelería y mayoristas que deseen abastecerse de bebidas y snacks internacionales."
+    },
+    "eyebrow": "Hazte socio",
+    "title": "Conviértase en socio de distribución de dristro",
+    "description": "Ya sea comercio minorista, hostelería o mayorista: nos encanta trabajar con empresas que quieran crecer con nosotros.",
+    "audiences": [
+      {
+        "title": "Comercio minorista",
+        "description": "Amplíe su lineal con varias categorías internacionales de bebidas y snacks demandadas, en lugar de un solo producto."
+      },
+      {
+        "title": "Hostelería",
+        "description": "Ofrezca a sus clientes una selección variada de bebidas internacionales en la carta."
+      },
+      {
+        "title": "Mayoristas",
+        "description": "Incorpore nuestro creciente portafolio a su surtido y abastezca a sus clientes desde una sola fuente."
+      }
+    ],
+    "stepsHeading": "Así funciona el proceso de inicio",
+    "steps": [
+      {
+        "title": "Consulta",
+        "description": "Nos envía su consulta a través del formulario de abajo, junto con algunos datos sobre su empresa."
+      },
+      {
+        "title": "Conversación",
+        "description": "Nos ponemos en contacto personalmente para hablar de sus necesidades y las posibles cantidades de entrega."
+      },
+      {
+        "title": "Condiciones",
+        "description": "Juntos acordamos precios, cantidades y frecuencia de entrega que se adapten a su negocio."
+      },
+      {
+        "title": "Primera entrega",
+        "description": "Una vez acordados todos los detalles, recibe su primera entrega: el comienzo de una colaboración a largo plazo."
+      }
+    ],
+    "formHeading": "Contáctenos ahora",
+    "formDescription": "Rellene el formulario: normalmente nos ponemos en contacto personalmente en un plazo de 1–2 días laborables."
+  },
+  "Contact": {
+    "meta": {
+      "title": "Contacto",
+      "description": "Contacte con dristro para consultas sobre la importación y distribución de bebidas internacionales."
+    },
+    "eyebrow": "Contacto",
+    "title": "Esperamos su mensaje",
+    "description": "Ya sea una pregunta, una oferta o una consulta concreta: escríbanos a través del formulario o contáctenos directamente.",
+    "directHeading": "Contacto directo",
+    "emailLabel": "Correo electrónico",
+    "phoneLabel": "Teléfono",
+    "locationLabel": "Ubicación"
+  },
+  "ContactForm": {
+    "nameLabel": "Nombre",
+    "companyLabel": "Empresa",
+    "emailLabel": "Correo electrónico",
+    "phoneLabel": "Teléfono (opcional)",
+    "reasonLabel": "Quiero...",
+    "reasonOptions": {
+      "kunde": "Convertirme en cliente",
+      "lieferant": "Convertirme en proveedor",
+      "sonstiges": "Otro"
+    },
+    "messageLabel": "Mensaje",
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando...",
+    "errors": {
+      "name": "Por favor, indique su nombre.",
+      "company": "Por favor, indique su empresa.",
+      "email": "Por favor, indique su correo electrónico.",
+      "emailInvalid": "Por favor, indique una dirección de correo electrónico válida.",
+      "message": "Por favor, escriba un mensaje.",
+      "generic": "Se produjo un error al enviar. Inténtelo de nuevo o escríbanos directamente por correo electrónico."
+    },
+    "successTitle": "¡Gracias por su mensaje!",
+    "successText": "Hemos recibido su consulta y nos pondremos en contacto con usted personalmente en breve.",
+    "sendAnother": "Enviar otro mensaje"
+  },
+  "Legal": {
+    "impressumMeta": {
+      "title": "Aviso legal",
+      "description": "Aviso legal de dristro conforme al § 5 TMG (ley alemana de telemedios)."
+    },
+    "datenschutzMeta": {
+      "title": "Política de privacidad",
+      "description": "Política de privacidad de dristro conforme al RGPD."
+    },
+    "germanOnlyNotice": "Por motivos legales, este contenido solo está disponible en alemán.",
+    "viewGerman": "Ver versión en alemán"
+  }
+}

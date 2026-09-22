@@ -1,0 +1,271 @@
+{
+  "Meta": {
+    "title": "dristro – International Beverage Import & B2B Distribution",
+    "description": "dristro imports and distributes high-quality international beverages and snacks to retail, hospitality and wholesale businesses in Germany. Personally managed, reliably delivered."
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About us",
+    "products": "Products",
+    "partner": "Become a partner",
+    "contact": "Contact"
+  },
+  "LanguageSwitcher": {
+    "label": "Language"
+  },
+  "Header": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "becomePartner": "Become a partner"
+  },
+  "Footer": {
+    "tagline": "International beverage import and B2B distribution for the German market.",
+    "navigationHeading": "Navigation",
+    "contactHeading": "Contact",
+    "locationLabel": "Location",
+    "legalHeading": "Legal",
+    "copyright": "© {year} dristro. All rights reserved.",
+    "brandLine": "Dristro Beverage Import & Distribution"
+  },
+  "CookieConsent": {
+    "text": "We use cookies to operate this website reliably. Necessary cookies are required for operation, optional cookies help us, for example, to analyze usage. Details can be found in our <link>privacy policy</link>.",
+    "necessaryLabel": "Necessary cookies (always active)",
+    "optionalLabel": "Optional cookies (e.g. analytics)",
+    "acceptAll": "Accept all",
+    "onlyNecessary": "Necessary only",
+    "settings": "Settings",
+    "saveSelection": "Save selection"
+  },
+  "NotFound": {
+    "eyebrow": "Error 404",
+    "title": "This page could not be found",
+    "description": "The page you requested does not exist or has been moved. Use the navigation or return to the homepage.",
+    "cta": "Go to homepage"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "B2B Beverage Import",
+      "title": "International beverages, reliably on German shelves",
+      "subtitle": "dristro connects selected international beverage and snack brands – from energy drinks to iced tea to coconut water – with retail, hospitality and wholesale businesses in Germany, personally managed and reliably delivered.",
+      "ctaPartner": "Become a partner",
+      "ctaProducts": "Our products",
+      "imageAlt": "International selection of beverages and snacks from dristro"
+    },
+    "trustBar": {
+      "items": [
+        "International direct import",
+        "100% natural products",
+        "Personal point of contact",
+        "Flexible delivery quantities"
+      ]
+    },
+    "portfolio": {
+      "eyebrow": "Our portfolio",
+      "title": "Several product categories, one reliable partner",
+      "description": "dristro imports and distributes products from various international beverage and snack categories – we continuously expand our range.",
+      "cta": "View the full product range"
+    },
+    "why": {
+      "eyebrow": "Why dristro",
+      "title": "A reliable partner for your beverage sourcing",
+      "reasons": [
+        {
+          "title": "Direct line to the manufacturer",
+          "description": "We work directly with producers without unnecessary intermediaries – short distances, fair terms, reliable quality."
+        },
+        {
+          "title": "Flexible delivery quantities",
+          "description": "Whether a small hospitality order or wholesale volume: we adapt delivery quantities and frequency to our partners' actual needs."
+        },
+        {
+          "title": "Personal support",
+          "description": "A dedicated point of contact accompanies you from the first inquiry to ongoing collaboration – quickly reachable, uncomplicated."
+        }
+      ]
+    },
+    "contactTeaser": {
+      "title": "Ready to add our range to your offering?",
+      "description": "Write to us – we'll get in touch personally and discuss terms, quantities and delivery times together.",
+      "cta": "Go to contact form"
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "About us",
+      "description": "dristro imports and distributes high-quality international beverages for the German B2B market. Learn about our mission and our team."
+    },
+    "eyebrow": "About us",
+    "title": "International beverage import with a personal touch",
+    "intro": [
+      "dristro was founded with the goal of making selected, high-quality beverages and snacks from international markets accessible to German retailers. Rather than relying on large, impersonal distribution structures, we work closely with manufacturers and trading partners – with short decision-making paths and a clear focus on quality.",
+      "Our portfolio spans several product categories – from energy drinks to iced tea to coconut water – instead of limiting ourselves to a single product. This allows us to offer retail, hospitality and wholesale businesses a varied, in-demand range from a single source. More brands and categories will follow as they meet our quality standards."
+    ],
+    "founderHeading": "Founder",
+    "founderName": "Hamzah Hajji",
+    "founderRole": "Founder",
+    "founderText": "Hamzah Hajji founded dristro to build a reliable bridge between international beverage manufacturers and German retail. At its core is direct, personal contact with every partner – from the first conversation to ongoing collaboration.",
+    "valuesHeading": "Our values",
+    "values": [
+      {
+        "title": "Quality without compromise",
+        "description": "We work exclusively with manufacturers whose products meet the highest quality standards."
+      },
+      {
+        "title": "Reliability",
+        "description": "Our partners can rely on on-time deliveries and transparent communication."
+      },
+      {
+        "title": "Personal relationships",
+        "description": "We focus on long-term, personal partnerships rather than anonymous business relationships."
+      },
+      {
+        "title": "Sustainable growth",
+        "description": "We expand our range deliberately and step by step, rather than chasing short-term volume."
+      }
+    ]
+  },
+  "Products": {
+    "meta": {
+      "title": "Products",
+      "description": "The dristro range: international beverage and snack categories for retail, hospitality and wholesale."
+    },
+    "eyebrow": "Products",
+    "title": "Our range",
+    "description": "We import and distribute selected international beverage and snack categories to retail, hospitality and wholesale businesses in Germany.",
+    "items": {
+      "kokoswasser": {
+        "brand": "Coconut Water",
+        "name": "Natural Coconut Water",
+        "origin": "Spain",
+        "description": "Natural coconut water with no added sugar. Refreshing, isotonic and ideal for retail sale as well as serving in hospitality.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "energy-drinks": {
+        "brand": "Energy Drinks",
+        "name": "International Energy Drinks",
+        "origin": "International",
+        "description": "Selected energy drink imports for retail, gas stations and hospitality – in-demand products with high turnover.",
+        "formats": ["330 ml", "500 ml"]
+      },
+      "eistee": {
+        "brand": "Iced Tea",
+        "name": "Iced Tea Specialties",
+        "origin": "Balkans & Europe",
+        "description": "Popular iced tea varieties from the Balkans and other European markets – a refreshing addition to any beverage shelf.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "erfrischungsgetraenke": {
+        "brand": "Soft Drinks",
+        "name": "Sparkling Soft Drinks",
+        "origin": "International",
+        "description": "International soft drink imports for a varied, well-stocked beverage range.",
+        "formats": ["330 ml", "1 L"]
+      },
+      "snacks": {
+        "brand": "Snacks",
+        "name": "International Snack Selection",
+        "origin": "International",
+        "description": "Selected snack products that pair perfectly with our beverage range – practical for the checkout area and add-on sales.",
+        "formats": ["Various formats"]
+      }
+    },
+    "comingSoonTitle": "More brands coming soon",
+    "comingSoonText": "We are continuously expanding our range. Do you distribute an international beverage that should reach Germany – or are you looking for another product for your range? Get in touch.",
+    "comingSoonCta": "Get in touch"
+  },
+  "Partner": {
+    "meta": {
+      "title": "Become a partner",
+      "description": "Become a distribution partner of dristro: for retail, hospitality and wholesale businesses that want to source international beverages and snacks."
+    },
+    "eyebrow": "Become a partner",
+    "title": "Become a distribution partner of dristro",
+    "description": "Whether retail, hospitality or wholesale – we look forward to working with businesses that want to grow with us.",
+    "audiences": [
+      {
+        "title": "Retail",
+        "description": "Expand your shelf with several in-demand international beverage and snack categories instead of just a single product."
+      },
+      {
+        "title": "Hospitality",
+        "description": "Offer your guests a varied selection of international beverages on the menu."
+      },
+      {
+        "title": "Wholesale",
+        "description": "Add our growing portfolio to your range and supply your customers from a single source."
+      }
+    ],
+    "stepsHeading": "How getting started works",
+    "steps": [
+      {
+        "title": "Inquiry",
+        "description": "You send us your inquiry via the form below, along with a few details about your business."
+      },
+      {
+        "title": "Conversation",
+        "description": "We get in touch personally to discuss your needs and possible delivery quantities."
+      },
+      {
+        "title": "Terms",
+        "description": "Together we agree on prices, quantities and delivery frequency that suit your business."
+      },
+      {
+        "title": "First delivery",
+        "description": "Once all details are settled, you receive your first delivery – the start of a long-term partnership."
+      }
+    ],
+    "formHeading": "Get in touch now",
+    "formDescription": "Fill out the form – we typically get back to you personally within 1–2 business days."
+  },
+  "Contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Contact dristro for inquiries about the import and distribution of international beverages."
+    },
+    "eyebrow": "Contact",
+    "title": "We look forward to hearing from you",
+    "description": "Whether a question, an offer or a specific inquiry – write to us via the form or contact us directly.",
+    "directHeading": "Direct contact",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "locationLabel": "Location"
+  },
+  "ContactForm": {
+    "nameLabel": "Name",
+    "companyLabel": "Company",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone (optional)",
+    "reasonLabel": "I would like to...",
+    "reasonOptions": {
+      "kunde": "Become a customer",
+      "lieferant": "Become a supplier",
+      "sonstiges": "Other"
+    },
+    "messageLabel": "Message",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "errors": {
+      "name": "Please enter your name.",
+      "company": "Please enter your company.",
+      "email": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "message": "Please enter a message.",
+      "generic": "An error occurred while sending. Please try again or email us directly."
+    },
+    "successTitle": "Thank you for your message!",
+    "successText": "We have received your inquiry and will get back to you personally shortly.",
+    "sendAnother": "Send another message"
+  },
+  "Legal": {
+    "impressumMeta": {
+      "title": "Legal Notice",
+      "description": "Legal notice for dristro pursuant to § 5 TMG (German Telemedia Act)."
+    },
+    "datenschutzMeta": {
+      "title": "Privacy Policy",
+      "description": "Privacy policy for dristro pursuant to GDPR."
+    },
+    "germanOnlyNotice": "For legal reasons, this content is only available in German.",
+    "viewGerman": "View German version"
+  }
+}

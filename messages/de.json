@@ -1,0 +1,271 @@
+{
+  "Meta": {
+    "title": "dristro – Internationaler Getränke-Import & B2B-Vertrieb",
+    "description": "dristro importiert und vertreibt hochwertige internationale Getränke und Snacks an Einzelhandel, Gastronomie und Großhandel in Deutschland. Persönlich betreut, zuverlässig geliefert."
+  },
+  "Nav": {
+    "home": "Start",
+    "about": "Über uns",
+    "products": "Sortiment",
+    "partner": "Partner werden",
+    "contact": "Kontakt"
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache"
+  },
+  "Header": {
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "becomePartner": "Partner werden"
+  },
+  "Footer": {
+    "tagline": "Internationaler Getränke-Import und B2B-Vertrieb für den deutschen Markt.",
+    "navigationHeading": "Navigation",
+    "contactHeading": "Kontakt",
+    "locationLabel": "Standort",
+    "legalHeading": "Rechtliches",
+    "copyright": "© {year} dristro. Alle Rechte vorbehalten.",
+    "brandLine": "Dristro Getränke-Import & Vertrieb"
+  },
+  "CookieConsent": {
+    "text": "Wir verwenden Cookies, um diese Website zuverlässig zu betreiben. Notwendige Cookies sind für den Betrieb erforderlich, optionale Cookies helfen uns z. B. bei der Analyse der Nutzung. Details finden Sie in unserer <link>Datenschutzerklärung</link>.",
+    "necessaryLabel": "Notwendige Cookies (immer aktiv)",
+    "optionalLabel": "Optionale Cookies (z. B. Statistik/Reichweitenmessung)",
+    "acceptAll": "Alle akzeptieren",
+    "onlyNecessary": "Nur notwendige",
+    "settings": "Einstellungen",
+    "saveSelection": "Auswahl speichern"
+  },
+  "NotFound": {
+    "eyebrow": "Fehler 404",
+    "title": "Diese Seite wurde nicht gefunden",
+    "description": "Die aufgerufene Seite existiert nicht oder wurde verschoben. Nutzen Sie die Navigation oder gehen Sie zurück zur Startseite.",
+    "cta": "Zur Startseite"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "B2B Getränke-Import",
+      "title": "Internationale Getränke, zuverlässig auf deutsche Regale",
+      "subtitle": "dristro verbindet ausgewählte internationale Getränke- und Snackmarken – von Energy Drinks über Eistee bis Kokoswasser – mit Einzelhandel, Gastronomie und Großhandel in Deutschland – persönlich betreut, verlässlich geliefert.",
+      "ctaPartner": "Partner werden",
+      "ctaProducts": "Unser Sortiment",
+      "imageAlt": "Internationale Getränke- und Snackauswahl von dristro"
+    },
+    "trustBar": {
+      "items": [
+        "Internationaler Direktimport",
+        "100% natürliche Produkte",
+        "Persönlicher Ansprechpartner",
+        "Flexible Liefermengen"
+      ]
+    },
+    "portfolio": {
+      "eyebrow": "Unser Portfolio",
+      "title": "Mehrere Produktkategorien, ein verlässlicher Partner",
+      "description": "dristro importiert und vertreibt Produkte aus verschiedenen internationalen Getränke- und Snackkategorien – wir bauen unser Sortiment kontinuierlich weiter aus.",
+      "cta": "Zum vollständigen Sortiment"
+    },
+    "why": {
+      "eyebrow": "Warum dristro",
+      "title": "Ein verlässlicher Partner für Ihren Getränkeeinkauf",
+      "reasons": [
+        {
+          "title": "Direkter Draht zum Hersteller",
+          "description": "Wir arbeiten ohne unnötige Zwischenhändler direkt mit den Produzenten zusammen – kurze Wege, faire Konditionen, verlässliche Qualität."
+        },
+        {
+          "title": "Flexible Liefermengen",
+          "description": "Ob kleine Gastronomie-Order oder Großhandelsvolumen: Wir passen Liefermengen und -rhythmus an den tatsächlichen Bedarf unserer Partner an."
+        },
+        {
+          "title": "Persönliche Betreuung",
+          "description": "Ein fester Ansprechpartner begleitet Sie von der ersten Anfrage bis zur laufenden Zusammenarbeit – schnell erreichbar, unkompliziert."
+        }
+      ]
+    },
+    "contactTeaser": {
+      "title": "Bereit, unser Sortiment in Ihr Angebot aufzunehmen?",
+      "description": "Schreiben Sie uns – wir melden uns persönlich bei Ihnen und besprechen gemeinsam Konditionen, Mengen und Lieferzeiten.",
+      "cta": "Zum Kontaktformular"
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "Über uns",
+      "description": "dristro importiert und vertreibt hochwertige internationale Getränke für den deutschen B2B-Markt. Lernen Sie unsere Mission und unser Team kennen."
+    },
+    "eyebrow": "Über uns",
+    "title": "Internationaler Getränke-Import mit persönlicher Handschrift",
+    "intro": [
+      "dristro wurde mit dem Ziel gegründet, ausgewählte, hochwertige Getränke und Snacks aus internationalen Märkten für den deutschen Handel zugänglich zu machen. Statt auf große, unpersönliche Vertriebsstrukturen zu setzen, arbeiten wir eng mit Herstellern und Handelspartnern zusammen – mit kurzen Entscheidungswegen und einem klaren Fokus auf Qualität.",
+      "Unser Portfolio umfasst mehrere Produktkategorien – von Energy Drinks über Eistee bis Kokoswasser – statt uns auf ein einzelnes Produkt zu beschränken. So können wir Einzelhandel, Gastronomie und Großhandel ein abwechslungsreiches, gefragtes Sortiment aus einer Hand anbieten. Weitere Marken und Kategorien sollen folgen, sobald sie unseren Qualitätsansprüchen genügen."
+    ],
+    "founderHeading": "Gründer",
+    "founderName": "Hamzah Hajji",
+    "founderRole": "Founder",
+    "founderText": "Hamzah Hajji hat dristro gegründet, um eine verlässliche Brücke zwischen internationalen Getränkeherstellern und dem deutschen Handel zu schaffen. Im Mittelpunkt steht dabei der direkte, persönliche Kontakt zu jedem Partner – vom ersten Gespräch bis zur laufenden Zusammenarbeit.",
+    "valuesHeading": "Unsere Werte",
+    "values": [
+      {
+        "title": "Qualität ohne Kompromisse",
+        "description": "Wir arbeiten ausschließlich mit Herstellern zusammen, deren Produkte höchsten Qualitätsansprüchen genügen."
+      },
+      {
+        "title": "Verlässlichkeit",
+        "description": "Unsere Partner können sich auf termingerechte Lieferungen und transparente Kommunikation verlassen."
+      },
+      {
+        "title": "Persönliche Beziehungen",
+        "description": "Wir setzen auf langfristige, persönliche Partnerschaften statt anonymer Geschäftsbeziehungen."
+      },
+      {
+        "title": "Nachhaltiges Wachstum",
+        "description": "Wir erweitern unser Sortiment bewusst und schrittweise, statt kurzfristig auf Masse zu setzen."
+      }
+    ]
+  },
+  "Products": {
+    "meta": {
+      "title": "Sortiment",
+      "description": "Das dristro-Sortiment: internationale Getränke- und Snackkategorien für Einzelhandel, Gastronomie und Großhandel."
+    },
+    "eyebrow": "Sortiment",
+    "title": "Unser Sortiment",
+    "description": "Wir importieren und vertreiben ausgewählte internationale Getränke- und Snackkategorien an Einzelhandel, Gastronomie und Großhandel in Deutschland.",
+    "items": {
+      "kokoswasser": {
+        "brand": "Kokoswasser",
+        "name": "Natürliches Kokoswasser",
+        "origin": "Spanien",
+        "description": "Natürliches Kokoswasser ohne Zuckerzusatz. Erfrischend, isotonisch und ideal für den Verkauf im Einzelhandel sowie den Ausschank in der Gastronomie.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "energy-drinks": {
+        "brand": "Energy Drinks",
+        "name": "Internationale Energy Drinks",
+        "origin": "International",
+        "description": "Ausgewählte Energy-Drink-Importe für Einzelhandel, Tankstellen und Gastronomie – gefragte Produkte mit hoher Umschlagsgeschwindigkeit.",
+        "formats": ["330 ml", "500 ml"]
+      },
+      "eistee": {
+        "brand": "Eistee",
+        "name": "Eistee-Spezialitäten",
+        "origin": "Balkanregion & Europa",
+        "description": "Beliebte Eistee-Sorten aus dem Balkan und weiteren europäischen Märkten – eine erfrischende Ergänzung für jedes Getränkeregal.",
+        "formats": ["500 ml", "1 L"]
+      },
+      "erfrischungsgetraenke": {
+        "brand": "Erfrischungsgetränke",
+        "name": "Prickelnde Erfrischungsgetränke",
+        "origin": "International",
+        "description": "Internationale Softdrink- und Erfrischungsgetränke-Importe für ein abwechslungsreiches, gut sortiertes Getränkeangebot.",
+        "formats": ["330 ml", "1 L"]
+      },
+      "snacks": {
+        "brand": "Snacks",
+        "name": "Internationale Snack-Auswahl",
+        "origin": "International",
+        "description": "Ausgewählte Snackprodukte, die ideal zu unserem Getränkesortiment passen – praktisch für Kassenbereich und Zusatzverkauf.",
+        "formats": ["Diverse Formate"]
+      }
+    },
+    "comingSoonTitle": "Weitere Marken folgen",
+    "comingSoonText": "Wir bauen unser Sortiment kontinuierlich aus. Sie vertreiben ein internationales Getränk, das nach Deutschland soll – oder suchen ein weiteres Produkt für Ihr Sortiment? Sprechen Sie uns an.",
+    "comingSoonCta": "Kontakt aufnehmen"
+  },
+  "Partner": {
+    "meta": {
+      "title": "Partner werden",
+      "description": "Werden Sie Vertriebspartner von dristro: für Einzelhandel, Gastronomie und Großhandel, die internationale Getränke und Snacks beziehen möchten."
+    },
+    "eyebrow": "Partner werden",
+    "title": "Werden Sie Vertriebspartner von dristro",
+    "description": "Ob Einzelhandel, Gastronomie oder Großhandel – wir freuen uns auf Unternehmen, die mit uns wachsen möchten.",
+    "audiences": [
+      {
+        "title": "Einzelhandel",
+        "description": "Erweitern Sie Ihr Regal um mehrere gefragte, internationale Getränke- und Snackkategorien statt nur ein einzelnes Produkt."
+      },
+      {
+        "title": "Gastronomie",
+        "description": "Bieten Sie Ihren Gästen eine abwechslungsreiche Auswahl internationaler Getränke auf der Karte."
+      },
+      {
+        "title": "Großhandel",
+        "description": "Nehmen Sie unser wachsendes Portfolio in Ihr Sortiment auf und beliefern Sie Ihre Kunden aus einer Hand."
+      }
+    ],
+    "stepsHeading": "So läuft der Einstieg ab",
+    "steps": [
+      {
+        "title": "Anfrage",
+        "description": "Sie senden uns über das Formular unten Ihre Anfrage mit ein paar Infos zu Ihrem Unternehmen."
+      },
+      {
+        "title": "Gespräch",
+        "description": "Wir melden uns persönlich bei Ihnen und besprechen Ihren Bedarf sowie mögliche Liefermengen."
+      },
+      {
+        "title": "Konditionen",
+        "description": "Gemeinsam legen wir Preise, Mengen und Lieferrhythmus fest, die zu Ihrem Geschäft passen."
+      },
+      {
+        "title": "Erste Lieferung",
+        "description": "Nach Abstimmung aller Details erhalten Sie Ihre erste Lieferung – der Beginn einer langfristigen Partnerschaft."
+      }
+    ],
+    "formHeading": "Jetzt Kontakt aufnehmen",
+    "formDescription": "Füllen Sie das Formular aus – wir melden uns in der Regel innerhalb von 1–2 Werktagen persönlich bei Ihnen."
+  },
+  "Contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Kontaktieren Sie dristro für Anfragen rund um den Import und Vertrieb internationaler Getränke."
+    },
+    "eyebrow": "Kontakt",
+    "title": "Wir freuen uns auf Ihre Nachricht",
+    "description": "Ob Frage, Angebot oder konkrete Anfrage – schreiben Sie uns über das Formular oder kontaktieren Sie uns direkt.",
+    "directHeading": "Direkter Kontakt",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "locationLabel": "Standort"
+  },
+  "ContactForm": {
+    "nameLabel": "Name",
+    "companyLabel": "Firma",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon (optional)",
+    "reasonLabel": "Ich möchte...",
+    "reasonOptions": {
+      "kunde": "Kunde werden",
+      "lieferant": "Lieferant werden",
+      "sonstiges": "Sonstiges"
+    },
+    "messageLabel": "Nachricht",
+    "submit": "Nachricht senden",
+    "submitting": "Wird gesendet...",
+    "errors": {
+      "name": "Bitte geben Sie Ihren Namen an.",
+      "company": "Bitte geben Sie Ihre Firma an.",
+      "email": "Bitte geben Sie Ihre E-Mail-Adresse an.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+      "message": "Bitte geben Sie eine Nachricht ein.",
+      "generic": "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt eine E-Mail."
+    },
+    "successTitle": "Vielen Dank für Ihre Nachricht!",
+    "successText": "Wir haben Ihre Anfrage erhalten und melden uns in Kürze persönlich bei Ihnen.",
+    "sendAnother": "Weitere Nachricht senden"
+  },
+  "Legal": {
+    "impressumMeta": {
+      "title": "Impressum",
+      "description": "Impressum von dristro gemäß § 5 TMG."
+    },
+    "datenschutzMeta": {
+      "title": "Datenschutzerklärung",
+      "description": "Datenschutzerklärung von dristro gemäß DSGVO."
+    },
+    "germanOnlyNotice": "Aus rechtlichen Gründen liegt dieser Inhalt nur auf Deutsch vor.",
+    "viewGerman": "Zur deutschen Version"
+  }
+}
