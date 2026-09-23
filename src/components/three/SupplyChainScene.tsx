@@ -47,20 +47,31 @@ function cycleTime(elapsed: number) {
   return elapsed % CYCLE;
 }
 
+// Zentrale Flug-Positionsberechnung – wird sowohl vom Flugzeug selbst als
+// auch von der Kamera genutzt, damit die Kamera das Flugzeug exakt verfolgen
+// kann statt über eine unabhängige, leicht abweichende Kurve zu schwenken
+// (führte vorher dazu, dass das Flugzeug zwischenzeitlich aus dem Bild lief).
+function getPlaneState(t: number) {
+  const progress = phaseProgress(t, PHASE.flight);
+  const pos = PLANE_START.clone().lerp(PLANE_ARRIVE, progress);
+  pos.y += Math.sin(progress * Math.PI) * 0.9; // Sinkflugbogen
+  return { pos, progress };
+}
+
 function Plane() {
   const ref = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = cycleTime(clock.elapsedTime);
-    const progress = phaseProgress(t, PHASE.flight);
+    const { pos, progress } = getPlaneState(t);
     const visible = t < PHASE.unload[0] + 0.3;
 
-    const pos = PLANE_START.clone().lerp(PLANE_ARRIVE, progress);
-    pos.y += Math.sin(progress * Math.PI) * 0.9; // Sinkflugbogen
     ref.current.position.copy(pos);
 
-    const scale = visible ? 1 - progress * 0.55 : 0;
+    // Bleibt deutlich sichtbar bis kurz vor der Ankunft, statt früh zu
+    // schrumpfen ("erkennbarer" statt kaum noch wahrnehmbar).
+    const scale = visible ? 1 - progress * 0.25 : 0;
     ref.current.scale.setScalar(scale);
 
     const dir = PLANE_ARRIVE.clone().sub(PLANE_START).normalize();
@@ -69,18 +80,18 @@ function Plane() {
 
   return (
     <group ref={ref}>
-      <group scale={0.32}>
+      <group scale={0.42}>
         <mesh>
           <capsuleGeometry args={[0.3, 1.3, 4, 8]} />
           <meshStandardMaterial color="#FAFAF8" />
         </mesh>
         <mesh rotation={[0, 0, Math.PI / 2]}>
           <boxGeometry args={[0.08, 1.7, 0.5]} />
-          <meshStandardMaterial color="#FAFAF8" />
+          <meshStandardMaterial color="#5DCAA5" />
         </mesh>
         <mesh position={[-0.68, 0.2, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.3]} />
-          <meshStandardMaterial color="#FAFAF8" />
+          <meshStandardMaterial color="#5DCAA5" />
         </mesh>
         <mesh position={[0.72, 0, 0]}>
           <boxGeometry args={[0.1, 0.16, 0.16]} />
@@ -173,6 +184,10 @@ function DeliveryCrate() {
 }
 
 function Shop() {
+  // Markisen-Streifen (Café-/Ladenlokal-Look) über dem Eingang
+  const stripeCount = 5;
+  const stripeWidth = 0.9 / stripeCount;
+
   return (
     <group position={SHOP_POS}>
       <mesh position={[0, 0.32, 0]}>
@@ -183,10 +198,51 @@ function Shop() {
         <boxGeometry args={[1, 0.1, 0.9]} />
         <meshStandardMaterial color="#C1653F" />
       </mesh>
+      {/* Fenster/Tür */}
       <mesh position={[0, 0.2, 0.41]}>
         <boxGeometry args={[0.4, 0.36, 0.02]} />
         <meshStandardMaterial color="#0F6E56" />
       </mesh>
+
+      {/* Markise mit Streifen, geneigt über dem Eingang */}
+      <group position={[0, 0.44, 0.42]} rotation={[0.5, 0, 0]}>
+        {Array.from({ length: stripeCount }).map((_, i) => (
+          <mesh key={i} position={[-0.45 + stripeWidth * (i + 0.5), 0, 0]}>
+            <boxGeometry args={[stripeWidth, 0.02, 0.26]} />
+            <meshStandardMaterial color={i % 2 === 0 ? "#C1653F" : "#FAFAF8"} />
+          </mesh>
+        ))}
+      </group>
+
+      {/* Gestapelte Liefer-Kisten neben dem Eingang (Handel/Großhandel) */}
+      <mesh position={[0.58, 0.09, 0.3]}>
+        <boxGeometry args={[0.16, 0.16, 0.16]} />
+        <meshStandardMaterial color="#5DCAA5" />
+      </mesh>
+      <mesh position={[0.58, 0.25, 0.3]}>
+        <boxGeometry args={[0.15, 0.15, 0.15]} />
+        <meshStandardMaterial color="#E8A377" />
+      </mesh>
+      <mesh position={[0.42, 0.09, 0.34]}>
+        <boxGeometry args={[0.14, 0.14, 0.14]} />
+        <meshStandardMaterial color="#C1653F" />
+      </mesh>
+
+      {/* Kleiner Tisch mit Stuhl (Gastronomie-Terrasse) */}
+      <group position={[-0.65, 0, 0.35]}>
+        <mesh position={[0, 0.16, 0]}>
+          <cylinderGeometry args={[0.008, 0.008, 0.32, 8]} />
+          <meshStandardMaterial color="#073B2E" />
+        </mesh>
+        <mesh position={[0, 0.33, 0]}>
+          <cylinderGeometry args={[0.13, 0.13, 0.02, 16]} />
+          <meshStandardMaterial color="#FAFAF8" />
+        </mesh>
+        <mesh position={[0.22, 0.1, 0]}>
+          <boxGeometry args={[0.02, 0.2, 0.14]} />
+          <meshStandardMaterial color="#0F6E56" />
+        </mesh>
+      </group>
     </group>
   );
 }
@@ -231,24 +287,47 @@ function Ground() {
   );
 }
 
+interface CameraKeyframe {
+  time: number;
+  pos: THREE.Vector3;
+  look?: THREE.Vector3;
+}
+
 function CameraRig() {
   const { camera } = useThree();
   const target = useMemo(() => new THREE.Vector3(), []);
 
-  const keyframes = useMemo(
+  // "look" bei Keyframe 0/1 wird nicht mehr benutzt (siehe unten, Flugphase
+  // verfolgt das Flugzeug live) – bleibt hier nur als Platzhalter für den
+  // Übergang in den nächsten Abschnitt.
+  const keyframes: CameraKeyframe[] = useMemo(
     () => [
-      { time: 0, pos: new THREE.Vector3(-2.6, 3.1, 4.4), look: new THREE.Vector3(-1.2, 1, -0.4) },
-      { time: PHASE.flight[1], pos: new THREE.Vector3(-0.5, 1.7, 2.5), look: WAREHOUSE_POS.clone().setY(0.5) },
+      { time: 0, pos: new THREE.Vector3(-3.1, 2.6, 3.4) },
+      { time: PHASE.flight[1], pos: new THREE.Vector3(-0.5, 1.7, 2.5) },
       { time: PHASE.unload[1], pos: new THREE.Vector3(0.3, 1.05, 1.6), look: SHELF_POS.clone().setY(0.45) },
       { time: PHASE.delivery[1], pos: new THREE.Vector3(1.7, 1.6, 3.1), look: WAREHOUSE_POS.clone().lerp(SHOP_POS, 0.6).setY(0.4) },
-      { time: CYCLE, pos: new THREE.Vector3(-2.6, 3.1, 4.4), look: new THREE.Vector3(-1.2, 1, -0.4) },
+      { time: CYCLE, pos: new THREE.Vector3(-3.1, 2.6, 3.4) },
     ],
     []
   );
 
   useFrame(({ clock }) => {
     const t = cycleTime(clock.elapsedTime);
-    let i = 0;
+
+    // Während der Flugphase folgt die Kamera live dem Flugzeug, statt über
+    // eine unabhängige, potenziell abweichende Kurve zu schwenken – so
+    // bleibt das Flugzeug garantiert im Bild.
+    if (t <= PHASE.flight[1]) {
+      const localT = easeInOutCubic(clamp01(t / PHASE.flight[1]));
+      camera.position.lerpVectors(keyframes[0].pos, keyframes[1].pos, localT);
+      const { pos: planePos } = getPlaneState(t);
+      // Leicht Richtung Lager vorausschauen, damit die Ankunft im Bild bleibt.
+      target.lerpVectors(planePos, WAREHOUSE_POS.clone().setY(0.5), 0.25);
+      camera.lookAt(target);
+      return;
+    }
+
+    let i = 1;
     while (i < keyframes.length - 2 && t > keyframes[i + 1].time) i++;
     const a = keyframes[i];
     const b = keyframes[i + 1];
@@ -256,7 +335,9 @@ function CameraRig() {
     const localT = easeInOutCubic(clamp01((t - a.time) / span));
 
     camera.position.lerpVectors(a.pos, b.pos, localT);
-    target.lerpVectors(a.look, b.look, localT);
+    const aLook = a.look ?? WAREHOUSE_POS.clone().setY(0.5);
+    const bLook = b.look ?? WAREHOUSE_POS.clone().setY(0.5);
+    target.lerpVectors(aLook, bLook, localT);
     camera.lookAt(target);
   });
 
