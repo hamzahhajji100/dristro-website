@@ -1,7 +1,42 @@
 <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="400" fill="#FAFAF8" />
-  <path d="M140 130 h120 l10 150 a20 20 0 0 1 -20 20 h-100 a20 20 0 0 1 -20 -20 z" fill="#0F6E56" />
-  <rect x="130" y="110" width="140" height="26" rx="8" fill="#0B5643" />
-  <rect x="160" y="180" width="80" height="70" rx="8" fill="#5DCAA5" opacity="0.9" />
-  <text x="200" y="222" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="13" fill="#0F6E56">Snacks</text>
+  <defs>
+    <linearGradient id="sn-body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45" />
+      <stop offset="30%" stop-color="#0F6E56" />
+      <stop offset="100%" stop-color="#0B5643" />
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="200" cy="330" rx="80" ry="12" fill="#0B5643" opacity="0.12" />
+
+  <!-- Standbeutel -->
+  <path d="M138 150
+           C132 150, 128 156, 128 165
+           L128 290
+           C128 308, 142 320, 162 320
+           L238 320
+           C258 320, 272 308, 272 290
+           L272 165
+           C272 156, 268 150, 262 150
+           C258 130, 244 118, 224 116
+           L176 116
+           C156 118, 142 130, 138 150 Z"
+        fill="url(#sn-body)" stroke="#073B2E" stroke-width="1.5" />
+
+  <!-- Aufreiß-Kerbe oben -->
+  <rect x="150" y="118" width="100" height="26" rx="8" fill="#073B2E" />
+  <path d="M170 118 L178 132 M230 118 L222 132" stroke="#FAFAF8" stroke-width="2" opacity="0.5" />
+
+  <!-- Fenster mit generischem Inhalt -->
+  <rect x="158" y="176" width="84" height="72" rx="10" fill="#FAFAF8" opacity="0.95" />
+  <circle cx="182" cy="204" r="10" fill="#E8A377" />
+  <circle cx="206" cy="198" r="8" fill="#C1653F" />
+  <circle cx="198" cy="220" r="9" fill="#5DCAA5" />
+  <circle cx="220" cy="222" r="7" fill="#E8A377" opacity="0.85" />
+
+  <!-- Siegelnaht seitlich -->
+  <path d="M128 220 L272 220" stroke="#073B2E" stroke-width="1" opacity="0.25" stroke-dasharray="3 4" />
+
+  <!-- Glanzlicht -->
+  <path d="M150 160 L146 300" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.2" />
 </svg>
