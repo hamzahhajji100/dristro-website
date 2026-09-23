@@ -19,16 +19,18 @@ const CYCLE = 18; // Sekunden für einen vollständigen Durchlauf
 const PLANE_START = new THREE.Vector3(-4.4, 2.6, -2.6);
 const PLANE_ARRIVE = new THREE.Vector3(0, 1.05, -1.15);
 const WAREHOUSE_POS = new THREE.Vector3(0, 0, -0.3);
-const SHELF_POS = new THREE.Vector3(0.25, 0.42, 0.35);
-const WORKER_POS = new THREE.Vector3(0.55, 0, 0.45);
+const WORKER_HOME = new THREE.Vector3(0.55, 0, 0.45);
 const SHOP_POS = new THREE.Vector3(2.6, 0, 0.5);
+// Punkt vor der Markise, an dem das Paket am Ende abgestellt wird.
+const SHOP_DROP_POS = new THREE.Vector3(SHOP_POS.x - 0.35, 0, SHOP_POS.z + 0.55);
+const PACKAGE_CARRY_OFFSET = new THREE.Vector3(0, 0.3, 0);
 
 // Phasenfenster (in Sekunden) innerhalb eines Zyklus
 const PHASE = {
-  flight: [0, 7] as const,
-  unload: [7, 9.5] as const,
-  delivery: [9.5, 14.5] as const,
-  reset: [14.5, 18] as const,
+  flight: [0, 7] as const, // Flugzeug bringt das Paket zum Lager
+  handoff: [7, 9.5] as const, // Übergabe ans Lager-Personal
+  carry: [9.5, 14.5] as const, // Person trägt das Paket zum Laden
+  reset: [14.5, 18] as const, // Person geht zurück, Paket bleibt stehen
 };
 
 function easeInOutCubic(x: number) {
@@ -48,9 +50,8 @@ function cycleTime(elapsed: number) {
 }
 
 // Zentrale Flug-Positionsberechnung – wird sowohl vom Flugzeug selbst als
-// auch von der Kamera genutzt, damit die Kamera das Flugzeug exakt verfolgen
-// kann statt über eine unabhängige, leicht abweichende Kurve zu schwenken
-// (führte vorher dazu, dass das Flugzeug zwischenzeitlich aus dem Bild lief).
+// auch von der Kamera und dem Paket genutzt, damit alle exakt synchron
+// bleiben (verhindert u.a., dass die Kamera das Flugzeug "verliert").
 function getPlaneState(t: number) {
   const progress = phaseProgress(t, PHASE.flight);
   const pos = PLANE_START.clone().lerp(PLANE_ARRIVE, progress);
@@ -58,46 +59,115 @@ function getPlaneState(t: number) {
   return { pos, progress };
 }
 
+// Zentrale Positionsberechnung für die Lager-Person: steht zunächst am
+// Lager, trägt das Paket dann zum Laden und geht leer zurück.
+function getWorkerState(t: number) {
+  if (t < PHASE.carry[0]) {
+    return { pos: WORKER_HOME.clone(), walking: false };
+  }
+  if (t < PHASE.carry[1]) {
+    const p = phaseProgress(t, PHASE.carry);
+    return {
+      pos: WORKER_HOME.clone().lerp(SHOP_DROP_POS, p),
+      walking: p > 0.02 && p < 0.98,
+    };
+  }
+  const p = phaseProgress(t, PHASE.reset);
+  return {
+    pos: SHOP_DROP_POS.clone().lerp(WORKER_HOME, p),
+    walking: p > 0.02 && p < 0.98,
+  };
+}
+
+// Klar erkennbares, vereinfachtes Flugzeug-Icon: spitz zulaufender Rumpf,
+// gerade Tragflächen mittig, Seiten- und Höhenleitwerk am Heck.
 function Plane() {
   const ref = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = cycleTime(clock.elapsedTime);
-    const { pos, progress } = getPlaneState(t);
-    const visible = t < PHASE.unload[0] + 0.3;
+    const { pos } = getPlaneState(t);
+    const visible = t < PHASE.flight[1] + 0.15;
 
     ref.current.position.copy(pos);
-
-    // Bleibt deutlich sichtbar bis kurz vor der Ankunft, statt früh zu
-    // schrumpfen ("erkennbarer" statt kaum noch wahrnehmbar).
-    const scale = visible ? 1 - progress * 0.25 : 0;
-    ref.current.scale.setScalar(scale);
+    ref.current.scale.setScalar(visible ? 1 : 0);
 
     const dir = PLANE_ARRIVE.clone().sub(PLANE_START).normalize();
-    ref.current.rotation.set(-0.15, Math.atan2(dir.x, dir.z), 0);
+    ref.current.rotation.set(-0.12, Math.atan2(dir.x, dir.z), 0);
   });
 
   return (
     <group ref={ref}>
-      <group scale={0.42}>
+      <group scale={0.5} rotation={[0, 0, Math.PI / 2]}>
+        {/* Rumpf */}
         <mesh>
-          <capsuleGeometry args={[0.3, 1.3, 4, 8]} />
+          <cylinderGeometry args={[0.02, 0.1, 1.3, 10]} />
           <meshStandardMaterial color="#FAFAF8" />
         </mesh>
-        <mesh rotation={[0, 0, Math.PI / 2]}>
-          <boxGeometry args={[0.08, 1.7, 0.5]} />
-          <meshStandardMaterial color="#5DCAA5" />
+        {/* Tragflächen */}
+        <mesh position={[0, 0.05, 0]}>
+          <boxGeometry args={[0.85, 0.025, 0.22]} />
+          <meshStandardMaterial color="#0F6E56" />
         </mesh>
-        <mesh position={[-0.68, 0.2, 0]}>
-          <boxGeometry args={[0.08, 0.5, 0.3]} />
-          <meshStandardMaterial color="#5DCAA5" />
+        {/* Höhenleitwerk */}
+        <mesh position={[0, -0.55, 0]}>
+          <boxGeometry args={[0.34, 0.02, 0.12]} />
+          <meshStandardMaterial color="#0F6E56" />
         </mesh>
-        <mesh position={[0.72, 0, 0]}>
-          <boxGeometry args={[0.1, 0.16, 0.16]} />
+        {/* Seitenleitwerk */}
+        <mesh position={[0, -0.55, 0.08]}>
+          <boxGeometry args={[0.02, 0.22, 0.14]} />
           <meshStandardMaterial color="#C1653F" />
         </mesh>
       </group>
+    </group>
+  );
+}
+
+// Braunes Paket: hängt während des Flugs am Flugzeug, wird am Lager
+// übergeben, von der Person zum Laden getragen und dort abgestellt.
+function Package() {
+  const ref = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = cycleTime(clock.elapsedTime);
+    let pos: THREE.Vector3;
+
+    if (t < PHASE.flight[1]) {
+      const { pos: planePos } = getPlaneState(t);
+      pos = planePos.clone().add(new THREE.Vector3(0, -0.24, 0));
+    } else if (t < PHASE.handoff[1]) {
+      const p = phaseProgress(t, PHASE.handoff);
+      const from = PLANE_ARRIVE.clone().add(new THREE.Vector3(0, -0.24, 0));
+      const to = WORKER_HOME.clone().add(PACKAGE_CARRY_OFFSET);
+      pos = from.lerp(to, p);
+    } else if (t < PHASE.carry[1]) {
+      const { pos: workerPos } = getWorkerState(t);
+      pos = workerPos.clone().add(PACKAGE_CARRY_OFFSET);
+    } else {
+      pos = SHOP_DROP_POS.clone().add(new THREE.Vector3(0, 0.07, 0));
+    }
+
+    ref.current.position.copy(pos);
+    ref.current.rotation.y = clock.elapsedTime * 0.4;
+  });
+
+  return (
+    <group ref={ref}>
+      <mesh>
+        <boxGeometry args={[0.13, 0.11, 0.13]} />
+        <meshStandardMaterial color="#A9754C" />
+      </mesh>
+      <mesh position={[0, 0.057, 0]}>
+        <boxGeometry args={[0.135, 0.01, 0.025]} />
+        <meshStandardMaterial color="#7C5334" />
+      </mesh>
+      <mesh position={[0, 0.057, 0]} rotation={[0, Math.PI / 2, 0]}>
+        <boxGeometry args={[0.135, 0.01, 0.025]} />
+        <meshStandardMaterial color="#7C5334" />
+      </mesh>
     </group>
   );
 }
@@ -141,14 +211,21 @@ function Worker() {
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = cycleTime(clock.elapsedTime);
-    const active = t >= PHASE.unload[0] && t <= PHASE.unload[1] ? 1 : 0;
-    const bob = active ? Math.sin(clock.elapsedTime * 6) * 0.03 : 0;
-    ref.current.position.set(WORKER_POS.x, WORKER_POS.y + bob, WORKER_POS.z);
-    ref.current.rotation.y = -0.4 + active * 0.5;
+    const { pos, walking } = getWorkerState(t);
+    const bob = walking ? Math.abs(Math.sin(clock.elapsedTime * 8)) * 0.035 : 0;
+    ref.current.position.set(pos.x, pos.y + bob, pos.z);
+
+    if (walking) {
+      const toShop = t < PHASE.carry[1];
+      const dir = toShop
+        ? SHOP_DROP_POS.clone().sub(WORKER_HOME).normalize()
+        : WORKER_HOME.clone().sub(SHOP_DROP_POS).normalize();
+      ref.current.rotation.y = Math.atan2(dir.x, dir.z);
+    }
   });
 
   return (
-    <group ref={ref} position={WORKER_POS}>
+    <group ref={ref} position={WORKER_HOME}>
       <mesh position={[0, 0.16, 0]}>
         <capsuleGeometry args={[0.07, 0.2, 4, 8]} />
         <meshStandardMaterial color="#0F6E56" />
@@ -158,28 +235,6 @@ function Worker() {
         <meshStandardMaterial color="#E8A377" />
       </mesh>
     </group>
-  );
-}
-
-function DeliveryCrate() {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = cycleTime(clock.elapsedTime);
-    const progress = phaseProgress(t, PHASE.unload);
-    const start = PLANE_ARRIVE.clone().setY(0.12);
-    const pos = start.lerp(SHELF_POS.clone().setY(0.5), progress);
-    ref.current.position.copy(pos);
-    ref.current.visible = progress > 0.01 && progress < 0.99;
-    ref.current.rotation.y = progress * Math.PI;
-  });
-
-  return (
-    <mesh ref={ref}>
-      <boxGeometry args={[0.16, 0.16, 0.16]} />
-      <meshStandardMaterial color="#C1653F" />
-    </mesh>
   );
 }
 
@@ -247,37 +302,6 @@ function Shop() {
   );
 }
 
-function Truck() {
-  const ref = useRef<THREE.Group>(null);
-
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = cycleTime(clock.elapsedTime);
-    const progress = phaseProgress(t, PHASE.delivery);
-    const visible = t >= PHASE.unload[1] - 0.5 && t < PHASE.reset[0] + 0.3;
-
-    const pos = WAREHOUSE_POS.clone()
-      .setY(0.14)
-      .lerp(SHOP_POS.clone().setY(0.14), progress);
-    ref.current.position.copy(pos);
-    ref.current.scale.setScalar(visible ? 0.24 : 0);
-    ref.current.rotation.y = -Math.PI / 2.4;
-  });
-
-  return (
-    <group ref={ref}>
-      <mesh>
-        <boxGeometry args={[1.2, 0.6, 0.6]} />
-        <meshStandardMaterial color="#0F6E56" />
-      </mesh>
-      <mesh position={[0.58, 0.1, 0]}>
-        <boxGeometry args={[0.3, 0.4, 0.55]} />
-        <meshStandardMaterial color="#5DCAA5" />
-      </mesh>
-    </group>
-  );
-}
-
 function Ground() {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
@@ -297,15 +321,12 @@ function CameraRig() {
   const { camera } = useThree();
   const target = useMemo(() => new THREE.Vector3(), []);
 
-  // "look" bei Keyframe 0/1 wird nicht mehr benutzt (siehe unten, Flugphase
-  // verfolgt das Flugzeug live) – bleibt hier nur als Platzhalter für den
-  // Übergang in den nächsten Abschnitt.
   const keyframes: CameraKeyframe[] = useMemo(
     () => [
       { time: 0, pos: new THREE.Vector3(-3.1, 2.6, 3.4) },
       { time: PHASE.flight[1], pos: new THREE.Vector3(-0.5, 1.7, 2.5) },
-      { time: PHASE.unload[1], pos: new THREE.Vector3(0.3, 1.05, 1.6), look: SHELF_POS.clone().setY(0.45) },
-      { time: PHASE.delivery[1], pos: new THREE.Vector3(1.7, 1.6, 3.1), look: WAREHOUSE_POS.clone().lerp(SHOP_POS, 0.6).setY(0.4) },
+      { time: PHASE.handoff[1], pos: new THREE.Vector3(0.3, 1.05, 1.6), look: WORKER_HOME.clone().setY(0.3) },
+      { time: PHASE.carry[1], pos: new THREE.Vector3(2.2, 1.3, 2.2), look: SHOP_DROP_POS.clone().setY(0.3) },
       { time: CYCLE, pos: new THREE.Vector3(-3.1, 2.6, 3.4) },
     ],
     []
@@ -350,7 +371,7 @@ function Scene() {
     []
   );
   const roadPoints = useMemo(
-    () => [WAREHOUSE_POS.clone().setY(0.02), SHOP_POS.clone().setY(0.02)],
+    () => [WORKER_HOME.clone().setY(0.02), SHOP_DROP_POS.clone().setY(0.02)],
     []
   );
 
@@ -364,8 +385,7 @@ function Scene() {
       <Shop />
       <Worker />
       <Plane />
-      <DeliveryCrate />
-      <Truck />
+      <Package />
     </>
   );
 }
