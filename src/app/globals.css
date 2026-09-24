@@ -10,3 +10,53 @@ body {
   background-color: #fafaf8;
   color: #2c2c2a;
 }
+
+/* Lieferketten-Animation (SupplyChain-Sektion) */
+@keyframes supply-plane-bob {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -12px);
+  }
+}
+
+@keyframes supply-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes supply-truck-wheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.supply-plane-bob {
+  animation: supply-plane-bob 3.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.supply-pulse {
+  animation: supply-pulse 2.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.supply-wheel {
+  animation: supply-truck-wheel 1.4s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
