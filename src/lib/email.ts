@@ -27,7 +27,11 @@ export async function sendContactMail(data: ContactFormData) {
 
   const resend = new Resend(apiKey);
 
-  return resend.emails.send({
+  // Wichtig: resend.emails.send() wirft bei einem API-Fehler KEINE Exception,
+  // sondern gibt { data: null, error } zurück. Ohne diese Prüfung würde ein
+  // Versandfehler (z.B. nicht verifizierte Absender-Domain) unbemerkt
+  // verschluckt und dem Nutzer trotzdem "Erfolg" angezeigt.
+  const { data: sent, error } = await resend.emails.send({
     from: `dristro Website <${from}>`,
     to,
     replyTo: data.email,
@@ -43,4 +47,10 @@ export async function sendContactMail(data: ContactFormData) {
       data.message,
     ].join("\n"),
   });
+
+  if (error) {
+    throw new Error(`Resend-Fehler (${error.name}): ${error.message}`);
+  }
+
+  return sent;
 }
