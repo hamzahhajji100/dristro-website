@@ -2,16 +2,16 @@
   <defs>
     <linearGradient id="kw-body" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55" />
-      <stop offset="35%" stop-color="#0F6E56" />
-      <stop offset="100%" stop-color="#0B5643" />
+      <stop offset="35%" stop-color="#0B6E76" />
+      <stop offset="100%" stop-color="#085458" />
     </linearGradient>
     <linearGradient id="kw-cap" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#5DCAA5" />
-      <stop offset="100%" stop-color="#3F9A79" />
+      <stop offset="0%" stop-color="#F3C876" />
+      <stop offset="100%" stop-color="#E3A73E" />
     </linearGradient>
   </defs>
 
-  <ellipse cx="200" cy="340" rx="70" ry="12" fill="#0B5643" opacity="0.12" />
+  <ellipse cx="200" cy="340" rx="70" ry="12" fill="#085458" opacity="0.12" />
 
   <!-- Flaschenkörper -->
   <path d="M172 130
@@ -30,17 +30,17 @@
            L162 168
            C162 158, 164 150, 168 145
            Z"
-        fill="url(#kw-body)" stroke="#073B2E" stroke-width="1.5" />
+        fill="url(#kw-body)" stroke="#05393C" stroke-width="1.5" />
 
   <!-- Verschluss -->
-  <rect x="188" y="52" width="24" height="20" rx="4" fill="url(#kw-cap)" stroke="#073B2E" stroke-width="1" />
-  <rect x="185" y="70" width="30" height="10" rx="3" fill="#3F9A79" />
+  <rect x="188" y="52" width="24" height="20" rx="4" fill="url(#kw-cap)" stroke="#05393C" stroke-width="1" />
+  <rect x="185" y="70" width="30" height="10" rx="3" fill="#B9822B" />
 
   <!-- Etikett (bewusst unbeschriftet/generisch) -->
   <rect x="170" y="190" width="60" height="80" rx="8" fill="#FAFAF8" opacity="0.95" />
-  <path d="M186 218 C186 208, 196 202, 206 208 C214 213, 212 224, 200 228 C192 231, 186 226, 186 218 Z" fill="#5DCAA5" />
-  <path d="M200 228 L200 250" stroke="#0F6E56" stroke-width="2.5" stroke-linecap="round" />
-  <path d="M200 236 C194 236, 190 240, 188 246" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" fill="none" />
+  <path d="M186 218 C186 208, 196 202, 206 208 C214 213, 212 224, 200 228 C192 231, 186 226, 186 218 Z" fill="#E3A73E" />
+  <path d="M200 228 L200 250" stroke="#0B6E76" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M200 236 C194 236, 190 240, 188 246" stroke="#0B6E76" stroke-width="2" stroke-linecap="round" fill="none" />
 
   <!-- Glanzlicht -->
   <path d="M178 140 L178 300" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.25" />

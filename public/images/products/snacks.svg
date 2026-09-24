@@ -2,12 +2,12 @@
   <defs>
     <linearGradient id="sn-body" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45" />
-      <stop offset="30%" stop-color="#0F6E56" />
-      <stop offset="100%" stop-color="#0B5643" />
+      <stop offset="30%" stop-color="#0B6E76" />
+      <stop offset="100%" stop-color="#085458" />
     </linearGradient>
   </defs>
 
-  <ellipse cx="200" cy="330" rx="80" ry="12" fill="#0B5643" opacity="0.12" />
+  <ellipse cx="200" cy="330" rx="80" ry="12" fill="#085458" opacity="0.12" />
 
   <!-- Standbeutel -->
   <path d="M138 150
@@ -21,21 +21,21 @@
            C258 130, 244 118, 224 116
            L176 116
            C156 118, 142 130, 138 150 Z"
-        fill="url(#sn-body)" stroke="#073B2E" stroke-width="1.5" />
+        fill="url(#sn-body)" stroke="#05393C" stroke-width="1.5" />
 
   <!-- Aufreiß-Kerbe oben -->
-  <rect x="150" y="118" width="100" height="26" rx="8" fill="#073B2E" />
+  <rect x="150" y="118" width="100" height="26" rx="8" fill="#05393C" />
   <path d="M170 118 L178 132 M230 118 L222 132" stroke="#FAFAF8" stroke-width="2" opacity="0.5" />
 
   <!-- Fenster mit generischem Inhalt -->
   <rect x="158" y="176" width="84" height="72" rx="10" fill="#FAFAF8" opacity="0.95" />
   <circle cx="182" cy="204" r="10" fill="#E8A377" />
   <circle cx="206" cy="198" r="8" fill="#C1653F" />
-  <circle cx="198" cy="220" r="9" fill="#5DCAA5" />
+  <circle cx="198" cy="220" r="9" fill="#E3A73E" />
   <circle cx="220" cy="222" r="7" fill="#E8A377" opacity="0.85" />
 
   <!-- Siegelnaht seitlich -->
-  <path d="M128 220 L272 220" stroke="#073B2E" stroke-width="1" opacity="0.25" stroke-dasharray="3 4" />
+  <path d="M128 220 L272 220" stroke="#05393C" stroke-width="1" opacity="0.25" stroke-dasharray="3 4" />
 
   <!-- Glanzlicht -->
   <path d="M150 160 L146 300" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.2" />

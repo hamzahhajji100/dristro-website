@@ -59,14 +59,14 @@ export function Header() {
               {open ? (
                 <path
                   d="M4 4L16 16M16 4L4 16"
-                  stroke="#0F6E56"
+                  stroke="#0B6E76"
                   strokeWidth="2"
                   strokeLinecap="round"
                 />
               ) : (
                 <path
                   d="M2 5H18M2 10H18M2 15H18"
-                  stroke="#0F6E56"
+                  stroke="#0B6E76"
                   strokeWidth="2"
                   strokeLinecap="round"
                 />

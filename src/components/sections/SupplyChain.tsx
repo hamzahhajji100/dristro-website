@@ -36,12 +36,12 @@ export async function SupplyChain() {
           >
             <defs>
               <linearGradient id="sc-building" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#12876A" />
-                <stop offset="100%" stopColor="#0B5643" />
+                <stop offset="0%" stopColor="#128C90" />
+                <stop offset="100%" stopColor="#085458" />
               </linearGradient>
               <linearGradient id="sc-truck" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#7ADCB8" />
-                <stop offset="100%" stopColor="#5DCAA5" />
+                <stop offset="0%" stopColor="#F3C876" />
+                <stop offset="100%" stopColor="#E3A73E" />
               </linearGradient>
             </defs>
 
@@ -50,8 +50,8 @@ export async function SupplyChain() {
               id="sc-route"
               d="M130,255 C230,165 320,165 420,225 C520,285 610,285 710,215 C810,145 900,145 1000,235"
               fill="none"
-              stroke="#5DCAA5"
-              strokeOpacity="0.45"
+              stroke="#E3A73E"
+              strokeOpacity="0.5"
               strokeWidth="3"
               strokeDasharray="2 12"
               strokeLinecap="round"
@@ -63,14 +63,14 @@ export async function SupplyChain() {
                 <path
                   d="M-38,0 L30,0 L46,-6 L30,-3 L14,-16 L6,-16 L14,-3 L-14,-3 L-22,-12 L-29,-12 L-24,-3 L-38,-3 Z"
                   fill="#FAFAF8"
-                  stroke="#073B2E"
+                  stroke="#05393C"
                   strokeWidth="1.2"
                 />
               </g>
               <rect x="-58" y="-78" width="116" height="78" rx="5" fill="url(#sc-building)" />
-              <rect x="-58" y="-96" width="26" height="20" rx="2" fill="#0B5643" />
+              <rect x="-58" y="-96" width="26" height="20" rx="2" fill="#085458" />
               <rect x="-14" y="-46" width="26" height="46" rx="2" fill="#FAFAF8" />
-              <rect x="20" y="-60" width="20" height="20" rx="2" fill="#5DCAA5" />
+              <rect x="20" y="-60" width="20" height="20" rx="2" fill="#E3A73E" />
             </g>
 
             {/* Station 2: Container auf Lkw */}
@@ -88,7 +88,7 @@ export async function SupplyChain() {
                 />
               ))}
               <rect x="30" y="-40" width="42" height="28" rx="3" fill="url(#sc-truck)" />
-              <rect x="-72" y="-16" width="144" height="16" rx="3" fill="#073B2E" />
+              <rect x="-72" y="-16" width="144" height="16" rx="3" fill="#05393C" />
               <circle className="supply-wheel" cx="-40" cy="4" r="12" fill="#2C2C2A" />
               <circle cx="-40" cy="4" r="4" fill="#FAFAF8" />
               <circle className="supply-wheel" cx="46" cy="4" r="12" fill="#2C2C2A" />
@@ -97,15 +97,15 @@ export async function SupplyChain() {
 
             {/* Station 3: Lagerregal */}
             <g transform="translate(710,215)">
-              <rect x="-60" y="-100" width="120" height="8" rx="2" fill="#0B5643" />
-              <rect x="-60" y="-56" width="120" height="8" rx="2" fill="#0B5643" />
-              <rect x="-60" y="-12" width="120" height="8" rx="2" fill="#0B5643" />
-              <rect x="-56" y="-104" width="6" height="100" fill="#073B2E" />
-              <rect x="50" y="-104" width="6" height="100" fill="#073B2E" />
+              <rect x="-60" y="-100" width="120" height="8" rx="2" fill="#085458" />
+              <rect x="-60" y="-56" width="120" height="8" rx="2" fill="#085458" />
+              <rect x="-60" y="-12" width="120" height="8" rx="2" fill="#085458" />
+              <rect x="-56" y="-104" width="6" height="100" fill="#05393C" />
+              <rect x="50" y="-104" width="6" height="100" fill="#05393C" />
               <rect className="supply-pulse" x="-44" y="-96" width="26" height="26" rx="3" fill="#E8A377" />
-              <rect x="-10" y="-94" width="22" height="24" rx="3" fill="#5DCAA5" />
+              <rect x="-10" y="-94" width="22" height="24" rx="3" fill="#E3A73E" />
               <rect className="supply-pulse" x="20" y="-52" width="26" height="26" rx="3" fill="#C1653F" />
-              <rect x="-40" y="-50" width="22" height="24" rx="3" fill="#5DCAA5" opacity="0.9" />
+              <rect x="-40" y="-50" width="22" height="24" rx="3" fill="#E3A73E" opacity="0.9" />
             </g>
 
             {/* Station 4: Supermarkt */}
@@ -124,8 +124,8 @@ export async function SupplyChain() {
                   strokeWidth="0.6"
                 />
               ))}
-              <rect x="-18" y="-34" width="36" height="34" rx="2" fill="#0F6E56" />
-              <circle cx="-30" cy="-20" r="8" fill="#5DCAA5" opacity="0.9" />
+              <rect x="-18" y="-34" width="36" height="34" rx="2" fill="#0B6E76" />
+              <circle cx="-30" cy="-20" r="8" fill="#E3A73E" opacity="0.9" />
             </g>
 
             {/* Wanderndes Paket entlang der Route */}

@@ -1,11 +1,11 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0F6E56" />
+  <rect width="1200" height="630" fill="#0B6E76" />
   <circle cx="140" cy="180" r="60" fill="none" stroke="#FAFAF8" stroke-width="6" />
-  <circle cx="205" cy="140" r="14" fill="#5DCAA5" />
-  <circle cx="215" cy="200" r="11" fill="#5DCAA5" />
-  <circle cx="150" cy="245" r="11" fill="#5DCAA5" />
+  <circle cx="205" cy="140" r="14" fill="#E3A73E" />
+  <circle cx="215" cy="200" r="11" fill="#E3A73E" />
+  <circle cx="150" cy="245" r="11" fill="#E3A73E" />
   <text x="230" y="200" font-family="sans-serif" font-weight="800" font-size="72" fill="#FAFAF8">dristro</text>
   <text x="140" y="320" font-family="sans-serif" font-weight="700" font-size="40" fill="#FAFAF8">Internationale Getränke,</text>
   <text x="140" y="375" font-family="sans-serif" font-weight="700" font-size="40" fill="#FAFAF8">zuverlässig auf deutsche Regale</text>
-  <text x="140" y="440" font-family="sans-serif" font-size="24" fill="#5DCAA5">B2B Getränke-Vertrieb · Einzelhandel · Gastronomie · Großhandel</text>
+  <text x="140" y="440" font-family="sans-serif" font-size="24" fill="#E3A73E">B2B Getränke-Vertrieb · Einzelhandel · Gastronomie · Großhandel</text>
 </svg>

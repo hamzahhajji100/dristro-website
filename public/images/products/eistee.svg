@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
 
-  <ellipse cx="200" cy="340" rx="70" ry="12" fill="#0B5643" opacity="0.1" />
+  <ellipse cx="200" cy="340" rx="70" ry="12" fill="#085458" opacity="0.1" />
 
   <!-- Flaschenkörper -->
   <path d="M172 128
@@ -30,18 +30,18 @@
            L162 167
            C162 157, 164 149, 168 144
            Z"
-        fill="url(#et-liquid)" stroke="#073B2E" stroke-width="1.5" />
+        fill="url(#et-liquid)" stroke="#05393C" stroke-width="1.5" />
 
   <!-- Verschluss -->
-  <rect x="188" y="50" width="24" height="20" rx="4" fill="url(#et-cap)" stroke="#073B2E" stroke-width="1" />
-  <rect x="185" y="68" width="30" height="10" rx="3" fill="#0F6E56" />
+  <rect x="188" y="50" width="24" height="20" rx="4" fill="url(#et-cap)" stroke="#05393C" stroke-width="1" />
+  <rect x="185" y="68" width="30" height="10" rx="3" fill="#0B6E76" />
 
   <!-- Etikett (generisch) -->
   <rect x="168" y="188" width="64" height="82" rx="8" fill="#FAFAF8" opacity="0.95" />
   <path d="M186 218 q14 -14 28 0 q-14 10 -28 0 Z" fill="#C1653F" />
-  <circle cx="196" cy="240" r="4" fill="#0F6E56" />
-  <circle cx="208" cy="246" r="3" fill="#5DCAA5" />
-  <circle cx="200" cy="254" r="3.5" fill="#0F6E56" />
+  <circle cx="196" cy="240" r="4" fill="#0B6E76" />
+  <circle cx="208" cy="246" r="3" fill="#E3A73E" />
+  <circle cx="200" cy="254" r="3.5" fill="#0B6E76" />
 
   <!-- Kondens-Tropfen ("eisgekühlt") -->
   <circle cx="176" cy="160" r="3" fill="#FAFAF8" opacity="0.8" />
